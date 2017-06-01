@@ -1,0 +1,29 @@
+var util = require('../../../utils/util.js')
+var app = getApp()
+Page({
+  data:{
+    theme:{},
+    swiper_img:[],
+    name:'',
+    profile:'',
+    data:[],
+  },
+
+  onLoad:function(){
+    this.getTheme(0)
+    console.log(this.data.data)
+  },
+
+    //获取详情数据
+  getTheme: function (id) {
+    var theme = util.getTheme(id)
+    console.log("获取详情数据")
+    this.setData({
+      theme: theme,
+      swiper_img:theme.img,
+      name:theme.name,
+      profile:theme.profile,
+      data:theme.data,
+    });
+  },
+})

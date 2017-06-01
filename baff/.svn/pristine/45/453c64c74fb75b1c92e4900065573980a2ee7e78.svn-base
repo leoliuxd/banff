@@ -1,0 +1,28 @@
+module.exports = {
+
+}
+
+var label = [
+  {
+    id: 1,
+    title: '禁止标志1',
+    text: '标示前方禁止农用运输车同行。设置在禁止农用运输车同行路段的入口处',
+    img: '../../../image/label1.png',
+  },
+
+  {
+    id: 2,
+    title: '禁止标志2',
+    text: '标示前方禁止农用运输车同行。设置在禁止农用运输车同行路段的入口处',
+    img: '../../../image/label2.png',
+  },
+
+  {
+    id: 3,
+    title: '禁止标志3',
+    text: '标示前方禁止农用运输车同行。设置在禁止农用运输车同行路段的入口处',
+    img: '../../../image/label3.png',
+  },
+]
+
+module.exports.label = label;

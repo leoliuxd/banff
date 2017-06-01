@@ -1,0 +1,72 @@
+<view class="Page">
+    <!--轮播 -->
+    <view class="swiper-container">
+        <swiper class="swiper" indicator-dots="true" current="{{swiperCurrent}}" bindchange="swiperChange">
+            <block wx:for="{{imgUrls}}" wx:key="imgUrls">
+                <swiper-item>
+                    <image src="{{item}}" class="img"/>        
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="icon_group" style="position:absolute;top:24px;right:10px;">
+            <image src="../../image/swiper_icon1.png" class="search" mode="aspectFill" ></image>
+            <image src="../../image/swiper_icon2.png" class="myTrait" mode="aspectFill"></image>
+        </view>
+    </view>
+        
+        <!--班夫生活-->
+        <view>
+            <view class="bfLive">
+                <navigator url="" class="cell1of3">
+                    <image src="../../image/food.png" mode="widthFix" class="bfLive_name"></image>
+                </navigator>
+                <navigator url="" class="cell2of3">
+                    <image src="../../image/accommodation.png" mode="widthFix" class="bfLive_name"></image>
+                </navigator>
+                <navigator url="" class="cell2of3">
+                    <image src="../../image/shop.png" mode="widthFix" class="bfLive_name"></image>
+                </navigator>
+                <navigator url="" class="cell1of3">
+                    <image src="../../image/entertainment.png" mode="widthFix" class="bfLive_name"></image>
+                </navigator>
+                <navigator url="" class="cell1of3">
+                    <image src="../../image/culture.png" mode="widthFix" class="bfLive_name"></image>
+                </navigator>
+                <navigator url="" class="cell2of3">
+                    <image src="../../image/scenery.png" mode="widthFix" class="bfLive_name"></image>
+                </navigator>
+                <navigator url="" class="cell2of3">
+                    <image src="../../image/fitness.png" mode="widthFix" class="bfLive_name"></image>
+                </navigator>
+                <navigator url="" class="cell1of3">
+                    <image src="../../image/all.png" mode="widthFix" class="bfLive_name"></image>
+                </navigator>
+            </view>
+        </view>
+
+        <!--班夫宝典-->
+            <view class="bfBook">
+                <block wx:for="{{book}}" wx:key="id">
+                    <navigator class="bfBook-item" style="background-color:{{item.color}};" url="{{'../book/'+item.id+'/'+item.id}}">
+                        <view class="title" style="margin-top:38rpx;">{{item.name}}</view>
+                        <view class="division">—</view>
+                        <view class="logo">班夫宝典</view>
+                    </navigator>
+                </block>
+                
+            </view>
+            
+        <!--精彩班夫-->
+        <view class="bfWonderful_title"> / 精彩班夫 /</view>
+        <scroll-view scroll-y="true" class="list" lower-threshold="5" bindscrolltolower="lower" style="height:690rpx;">
+            <block wx:for="{{wonderful}}" wx:key="*this">
+                <navigator url="" class="item">
+                      <image class="poster" src="{{item.img}}"></image>
+                </navigator>
+            </block>
+          </scroll-view>
+
+</view>
+
+
+

@@ -1,0 +1,21 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/book/season/season",
+    "pages/book/advention/advention",
+    "pages/book/tips/tips",
+    "pages/book/tips/tips_content/tips_content",
+    "pages/book/sport/sport",
+    "pages/live/food/food",
+    "pages/live/food/merchants/merchants",
+    "pages/details/list/list",
+    "pages/details/content/content",
+    "pages/details/theme/theme"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle":"black"
+  }
+}

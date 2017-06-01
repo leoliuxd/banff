@@ -1,0 +1,20 @@
+module.exports = {
+
+}
+
+var list=[
+            {
+                id: 'scenery',
+                name: '景点',
+                open: true,
+                pages: ['banffzhen', 'rosehu', 'nuokushan']
+            },
+            {
+                id: 'advention',
+                name: '探险',
+                open: true,
+                pages: ['ski', 'climb', 'fish','drift']
+            },
+        ]
+
+module.exports.list = list;

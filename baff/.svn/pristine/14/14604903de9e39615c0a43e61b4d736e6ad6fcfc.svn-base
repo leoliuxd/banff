@@ -1,0 +1,35 @@
+var util = require('../../../../utils/util.js')
+var app = getApp()
+Page({
+  data:{
+    scrollHeight:0,
+    text:[],
+  },
+
+  onLoad:function(options){
+    var that=this
+    this.getTipsContent(options.id)
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          scrollHeight: res.windowHeight
+        });
+      }
+    });
+  },
+
+  //获取tips内容数据
+  getTipsContent: function (id) {
+    var content
+    var tips = util.getTips()
+    for(var i in tips){
+      if(parseInt(id) == parseInt(tips[i].id))
+        content=tips[i]
+    }
+    console.log("获取tips内容数据")
+    console.log(content.text)
+    this.setData({
+      text:content.text
+    })
+  },
+})

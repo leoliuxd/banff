@@ -1,0 +1,10 @@
+<view class="Page">
+  <scroll-view scroll-y="true" class="list">
+    <block wx:for="{{detail_list}}" wx:key="id">
+      <navigator url="{{item.url}}" class="item">
+          <image class="poster" src="{{item.img}}"></image>
+          <view class="title">-- {{item.name}} --</view>
+      </navigator>
+    </block>
+  </scroll-view>
+</view>

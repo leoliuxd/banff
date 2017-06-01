@@ -1,0 +1,21 @@
+var util = require('../../../utils/util.js')
+var app = getApp()
+Page({
+  data:{
+    detail_list:[],
+  },
+
+  onLoad:function(){
+    this.getDetailList()
+    console.log(this.data.detail_list)
+  },
+
+  //获取专题列表数据
+  getDetailList: function () {
+    var detail_list = util.getDetailList()
+    console.log("获取专题列表数据")
+    this.setData({
+      detail_list: detail_list
+    });
+  },
+})

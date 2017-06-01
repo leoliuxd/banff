@@ -1,0 +1,8 @@
+.content_item{
+  margin: 100rpx 80rpx;
+  background-color: #eee;
+  padding:40rpx 20rpx;
+  margin-bottom: 100rpx;
+  font-size: 28rpx;
+}
+

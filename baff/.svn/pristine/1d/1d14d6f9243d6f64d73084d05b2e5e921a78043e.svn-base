@@ -1,0 +1,18 @@
+<view class="Page" style="background-color: #eee;">
+ <swiper class="swiper" current="{{current}}">
+      <block wx:for="{{label}}" wx:key="id">
+        <swiper-item>
+          <view class="body">
+            <image src="{{item.img}}" class="img"/>
+            <view class="title">{{item.title}}</view>
+            <view class="detail">{{item.text}}</view> 
+          </view>     
+          <view class="footer">
+             <view class="icon1" bindtap="forward"></view>
+             <view class="pageIndex">{{item.index}}</view>
+             <view class="icon2" bindtap="back"></view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+</view>

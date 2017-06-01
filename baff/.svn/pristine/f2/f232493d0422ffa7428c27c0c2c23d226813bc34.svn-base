@@ -1,0 +1,20 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/book/season/season",
+    "pages/book/advention/advention",
+    "pages/book/tips/tips",
+    "pages/book/sport/sport",
+    "pages/live/food/food",
+    "pages/details/list/list",
+    "pages/details/content/content",
+    "pages/details/theme/theme"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle":"black"
+  }
+}

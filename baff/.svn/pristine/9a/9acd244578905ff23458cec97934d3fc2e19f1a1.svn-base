@@ -1,0 +1,18 @@
+<view class="Page">
+  <view class="header">
+    <image class="img" src="{{list_img}}" mode="aspectFill"></image>
+    <view class="title">{{list_title}}</view>
+  </view>
+  <scroll-view scroll-y="true" class="list" style="height:{{scrollHeight}}px;">
+    <block wx:for="{{detail_list}}" wx:key="id">
+      <navigator url="{{item.url}}" class="item" wx:if="{{item.img.length > 0}}">
+          <image class="poster" src="{{item.img}}"></image>
+          <view class="title">-- {{item.name}} --</view>
+      </navigator>
+      <navigator url="{{item.url}}" class="item" wx:else>
+        <view class="poster" style="background-color:rgb(104,46,107)"></view>
+        <view class="title">-- {{item.name}} --</view>
+      </navigator>
+    </block>
+  </scroll-view>
+</view>

@@ -1,0 +1,89 @@
+function formatTime(date) {
+  var year = date.getFullYear()
+  var month = date.getMonth() + 1
+  var day = date.getDate()
+
+  var hour = date.getHours()
+  var minute = date.getMinutes()
+  var second = date.getSeconds()
+
+
+  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+
+function formatNumber(n) {
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
+
+module.exports = {
+  formatTime: formatTime
+}
+
+var wonderful=require('../data/data_wonderful.js')
+var wonderful_next=require('../data/data_wonderful_next.js')
+var season=require('../data/data_season.js')
+var list=require('../data/data_advention.js')
+var food_place=require('../data/data_food.js')
+var detail_list=require('../data/data_detail_list.js')
+var theme = require('../data/data_detail_theme.js')
+var tips=require('../data/data_tips.js')
+var label=require('../data/data_label.js')
+
+
+
+
+
+function getWonderful(){
+  return wonderful.wonderful
+}
+
+function getWonderfulNext(){
+  return wonderful_next.next
+}
+
+function getSeason(){
+  return season.season
+}
+
+function getAdvention(){
+  return list.list
+}
+
+function getFoodPlace(id){
+  for (var i = 0, len = food_place.food_place.length; i < len; ++i){
+    if(parseInt(id) == parseInt(food_place.food_place[i].id)){
+      
+      return food_place.food_place[i]
+    }
+  }
+}
+
+function getDetailList(){
+  return detail_list.detail_list
+}
+
+function getTheme(id){
+  return theme.theme
+}
+
+
+function getTips(){
+  return tips.tips
+}
+
+function getLabel(){
+  return label.label
+}
+
+
+
+module.exports.getWonderful = getWonderful;
+module.exports.getWonderfulNext = getWonderfulNext;
+module.exports.getSeason = getSeason;
+module.exports.getAdvention = getAdvention;
+module.exports.getFoodPlace = getFoodPlace;
+module.exports.getDetailList = getDetailList;
+module.exports.getTheme = getTheme;
+module.exports.getTips = getTips;
+module.exports.getLabel = getLabel;

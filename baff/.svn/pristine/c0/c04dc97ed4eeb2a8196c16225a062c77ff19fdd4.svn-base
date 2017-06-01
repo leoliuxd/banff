@@ -1,0 +1,24 @@
+<view class="Page">
+  <scroll-view scroll-y="true" class="list">
+    <swiper class="swiper" indicator-dots="true">
+      <block wx:for="{{swiper_img}}" wx:key="*this">
+        <swiper-item>
+          <image src="{{item}}" class="img"/>        
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="meta">
+      <view class="name">-- {{name}} --</view>
+      <view class="profile">{{profile}}</view>
+    </view>
+    <block wx:for="{{data}}" wx:key="*this">
+      <view class="details">
+        <view class="title_groups">
+          <view class="icon"></view>
+          <view class="title">{{item.title}}</view>
+        </view>
+        <view class="text">{{item.text}}</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

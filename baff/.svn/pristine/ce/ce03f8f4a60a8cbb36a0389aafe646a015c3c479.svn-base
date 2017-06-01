@@ -1,0 +1,226 @@
+/*搜索*/
+.header{
+     display: flex;
+}
+.search-bar{
+    position: relative;
+    margin: 25rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    width:620rpx;
+}
+
+.search-bar__form{
+    position: relative;
+    -webkit-box-flex: 1;
+    -webkit-flex: auto;
+    flex: auto;
+    border-radius: 60rpx;
+    background: #FFFFFF;  
+}
+
+.search-bar__box{
+    position: relative;
+    padding-left: 60rpx;
+    padding-right: 60rpx;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.icon-search_in-box{
+    position: absolute;
+    left: 20rpx;
+    top: 14rpx;
+}
+
+.search-bar__input{
+    height: 72rpx;
+    line-height: 56rpx;
+    font-size: 28rpx;
+}
+
+.icon-clear{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 14rpx 16rpx;
+    font-size: 0;
+}
+
+.search-bar__label{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    border-radius: 60rpx;
+    color: #999999;
+    background: rgb(240, 240, 240);
+}
+
+.icon-search{
+    margin-top: 10rpx;
+    margin-left: 25rpx;
+    font-size: inherit;
+}
+
+.search-bar__text{
+    margin-left: 16rpx;
+    display: inline-block;
+    font-size: 26rpx;
+}
+
+.search-bar__cancel-btn{
+    margin-left: 20rpx;
+    line-height: 56rpx;
+    color: #09BB07;
+    white-space: nowrap;
+}
+
+.myTrait{
+    width:50rpx;
+    height:50rpx;
+    display: flex;
+    margin-top:31rpx;
+}
+
+/*列表框*/
+.list_groups{
+  display: flex;
+  flex-direction: row;
+  border-top: 1rpx solid #E6E6EA;
+  width:100%;
+  height: 88rpx;  
+}
+
+.list_groups .switch{
+  display: flex;
+  border-right:1rpx solid #E6E6EA; 
+  width: 242rpx;
+  flex-direction: row;
+}
+
+.list_groups .switch .icon{
+  width:27rpx;
+  height: 35rpx;
+  margin-left: 65rpx;
+  margin-top:27rpx;
+}
+
+.list_groups .switch .title{
+  color: #672e6c;
+  font-size: 32rpx;
+  margin-left: 14rpx;
+  margin-top:20rpx;
+}
+
+.list_groups .place{
+  border-right:1rpx solid #E6E6EA; 
+  width: 375rpx;
+  align-content: flex-start;
+}
+
+.list_groups .place .title{
+  color: #666666;
+  font-size: 32rpx;
+  margin-top:20rpx;
+  padding-left: 90rpx;
+  float:left;
+}
+
+.list_groups .place .icon{
+   height: 14rpx;
+   width: 14rpx;
+   float: left;
+   margin-left: 17rpx;
+   margin-top:50rpx;
+}
+
+.list_groups .live{
+  display: flex;
+  position: relative;
+}
+
+.list_groups .live .title{
+  color: #666666;
+  font-size: 32rpx;
+  margin-top:20rpx;
+  padding-left: 25rpx;
+}
+
+.list_groups .live .icon{
+  height: 14rpx;
+  width: 14rpx;
+  position: absolute;
+  top:50rpx;
+  left:100rpx;
+}
+
+/*列表*/
+.list{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.list .item{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    width:100%;
+    margin-top: 2rpx;
+    position: relative;
+}
+
+.list .item .img{
+  height: 100%;
+  width: 100%;
+}
+
+.list .item .title{
+  font-size: 38rpx;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  left:26rpx;
+  top:200rpx;
+}
+
+.list .item .arrow{
+  height: 68rpx;
+  width: 68rpx;
+  position: absolute;
+  top:183rpx;
+  right:25rpx;
+}
+
+.list .logo_groups{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(104, 46, 107);
+    width:100%;
+    margin-top: 2rpx;
+}
+
+
+.list .logo_groups .logo{
+  font-size: 38rpx;
+  font-weight: bold;
+  
+  color: white;
+  padding: 50rpx 25rpx;
+}
+
+.list .logo_groups .arrow{
+  display: flex;
+  height: 68rpx;
+  width: 68rpx;
+  margin-top:46rpx;
+  margin-right: 25rpx;
+}

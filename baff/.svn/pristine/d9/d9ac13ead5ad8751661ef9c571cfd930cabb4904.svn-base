@@ -1,0 +1,11 @@
+<view class="Page">
+    <scroll-view scroll-y="true" class="tips">
+        <view class="tips_item"></view>
+        <view class="tips_item"></view>
+        <view class="tips_item"></view>
+        <view class="tips_item"></view>
+        <view class="tips_item"></view>
+        <view class="tips_item"></view>
+        <view class="tips_item"></view>
+    </scroll-view>
+</view>

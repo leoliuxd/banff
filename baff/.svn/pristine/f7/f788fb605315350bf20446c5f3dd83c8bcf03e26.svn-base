@@ -1,0 +1,34 @@
+var util=require('../../../utils/util.js')
+var app = getApp()
+Page({
+    data: {
+        list: []
+    },
+
+    onLoad:function(){
+        console.log('onLoad')
+        this.getAdvention()
+    },
+
+    kindToggle: function (e) {
+        var id = e.currentTarget.id, list = this.data.list;
+        for (var i = 0, len = list.length; i < len; ++i) {
+            if (list[i].id == id) {
+                list[i].open = !list[i].open
+            } 
+        }
+        this.setData({
+            list: list
+        });
+    },
+
+    //获取探险数据
+    getAdvention: function(){
+    var list = util.getAdvention()
+    console.log("获取季节数据")
+    console.log(list)
+    this.setData({
+      list:list
+    });
+  },
+});

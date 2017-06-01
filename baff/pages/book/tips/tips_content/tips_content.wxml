@@ -1,0 +1,18 @@
+<import src="../../../../wxParse/wxParse.wxml"/> 
+<view class="Page">
+  <view wx:if="{{remind}}" class="remind-box">
+    <image class="remind-img" src="../../../../image/loading.gif"></image>
+  </view>
+  <scroll-view scroll-y="true" style="height:{{scrollHeight}}px;" wx:else>
+    <view class="header">
+      <view class="icon"></view>
+      <view class="title">{{title}}</view>
+    </view>
+    <block wx:for="{{tip}}" wx:key="id">
+      <view class="content_item">
+        <view class="title">{{item.name}}</view>
+        <view class="detail"><text>{{item.intro}}</text></view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

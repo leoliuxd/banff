@@ -1,0 +1,109 @@
+var util=require('../../../utils/util.js')
+var app = getApp()
+Page({
+    data:{
+        search_inputShowed: false,
+        search_inputVal: "",
+
+        isShowList:true,
+        switchMode:'',
+        _place: ['班夫镇', '露易丝湖', '诺奎山'],
+        place_id:0,
+        selectedPlace:{},
+        placeIndex: 0,
+
+        _live:['全部','购物','文化','健身','住宿','娱乐','风景'],
+        live:[
+            {'id':'food',name:'美食'},
+            {id:'shop',name:'购物'},
+            {id:'culture',name:'文化'},
+            {id:'fitness',name:'健身'},
+            {id:'accommodation',name:'住宿'},
+            {id:'entertainment',name:'娱乐'},
+            {id:'scenery',name:'风景'},
+            {id:'all',name:'全部'},
+        ],
+        liveIndex:0,
+
+    },
+
+    onLoad:function(res){
+        this.getFoodPlace(this.data.placeIndex)
+        this.setData({
+            switchMode:'地图',
+        })
+    },
+
+   // 搜索
+    showInput: function () {
+        this.setData({
+            search_inputShowed: true
+        });
+    },
+    hideInput: function () {
+      this.setData({
+          search_inputVal: "",
+          search_inputShowed: false
+      });
+    },
+    clearInput: function () {
+      this.setData({
+          search_inputVal: ""
+      });
+    },
+    inputTyping: function (e) {
+      this.setData({
+          search_inputVal: e.detail.value
+      });
+    },
+
+    //地图
+    switch:function(e){
+        if(this.data.isShowList == true){
+            this.setData({
+                isShowList:false,
+                switchMode:'列表',
+            })
+        }else{
+            this.setData({
+            isShowList:true,
+            switchMode:'地图',
+        })
+        }
+        
+    },
+
+    //选择器
+    placeChange: function(e) {
+        console.log('picker发送选择改变，携带值为', e.detail.value)
+        this.getFoodPlace(e.detail.value)
+        this.setData({
+            placeIndex: e.detail.value,
+        })
+        console.log(this.data.selectedPlace)
+    },
+
+    liveChange:function(e){
+        console.log('picker发送选择改变，携带值为', e.detail.value)
+        this.setData({
+            liveIndex: e.detail.value,
+        })
+        console.log(this.data.live[this.data.liveIndex].name)
+    },
+
+    //获取美食地点数据
+    getFoodPlace: function(id){
+        var selectedPlace= util.getFoodPlace(id)
+        var place_id = selectedPlace.id
+        console.log("获取美食地点数据")
+        console.log(selectedPlace)
+        this.setData({
+        selectedPlace:selectedPlace,
+        place_id: place_id
+        });
+
+    },
+
+
+
+})

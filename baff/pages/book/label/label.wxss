@@ -1,0 +1,22 @@
+.label_item{
+  width: 100%;
+  border-bottom: 23rpx solid rgb(245,245,245);
+}
+
+.label_item .title{
+  width:60%;
+  margin: 0 auto;
+  margin-top:60rpx;
+  margin-bottom: 38rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.label_item .text{
+  width:60%;
+  margin: 0 auto;
+  margin-bottom: 45rpx;
+  font-size: 22rpx;
+  line-height: 45rpx;
+  color: #999999;
+}

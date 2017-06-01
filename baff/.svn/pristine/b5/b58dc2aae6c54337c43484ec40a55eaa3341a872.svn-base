@@ -1,0 +1,63 @@
+module.exports = {
+
+}
+
+var list=[
+          {
+            id: 'scenery',
+            name: '景点',
+            open: true,
+            pages:[
+              {
+                id: 'w_banfuTown',
+                name: '班夫镇',
+              },
+              {
+                id: 'w_rose',
+                name: '露易丝湖',
+              },
+              {
+                id: 'w_columbia',
+                name: '哥伦比亚冰原',
+              }
+            ]   
+          },
+
+            {
+                id: 'advention',
+                name: '探险',
+                open: true,
+                pages: [
+                  {
+                    id:'drift',
+                    name:'狗拉雪橇',
+                    swiper_img: ['../../../image/theme_swiper01.png', '../../../image/theme_swiper02.png', '../../../image/theme_swiper03.png'],
+                    profile:'感受野外的清新空气，完美的步道设计和沿路的优美风景是您亲近自然最直接的方式。徒步健行者们可以看到麋鹿、山羊、土拨鼠、海狸、熊或者种类',
+                    details:[
+                      {
+                        title:"Cougar Pete's Kitchen & Lookout",
+                        img:'',
+                      },
+                      { 
+                        title: "Evenlyn's Coffee Bar",
+                        img: '../../../image/sport_img01.png',
+                      },
+                      {
+                        title:'Hoodoo Lounge & Nightclub',
+                        img: '../../../image/sport_img02.png'
+                      }
+                    ],
+                  },
+                  {
+                    id:'golf',
+                    name:'高尔夫',
+                    swiper_img: [],
+                    profile: '',
+                    logo: '',
+                    details: [],
+                  }
+                ]
+            },
+        ]
+
+module.exports.list = list;

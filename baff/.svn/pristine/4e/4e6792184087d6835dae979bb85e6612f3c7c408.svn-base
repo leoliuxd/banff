@@ -1,0 +1,66 @@
+module.exports = {
+
+}
+
+var food_place=[
+            {
+               id:0,
+               name:'班夫镇',
+               data:[
+                 {
+                   title:'Banff Tea Co.',
+                   logo_img:'../../../image/sport_img03.png',
+                   
+                   img: ['../../../../image/theme_swiper01.png', '../../../../image/theme_swiper02.png', '../../../../image/theme_swiper03.png'],
+                   profile:'感受野外的清新空气，完美的步道设计和沿路的优美风景是您亲近自然最直接的方式。徒步健行者们可以看到麋鹿、山羊、土拨鼠、海狸、熊或者种类',
+                   address:'405 Spray Avenue, Banff, AB, T1L 1J4',
+                   telphone:'1-403-762-8322',
+                   email:'info@banffteaco.com',
+                   website:'www.banffteaco.com',
+                    
+                 },
+                 {
+                    title: "Cougar Pete's Kitchen & Lookout",
+                    logo_img:'',
+                    img:[],
+                    profile:'',
+                    address:'',
+                    telphone:'',
+                    email:'',
+                    website:'',
+                 },
+                 {
+                   title: "Evelyn's Coffee Bar",
+                   logo_img:'../../../image/sport_img01.png',                
+                   img: [],
+                   profile: '',
+                   address: '',
+                   telphone: '',
+                   email: '',
+                   website: '',
+                 },
+                 {
+                   title:'Hoodoo Lounge & Nightclub',
+                   logo_img:'../../../image/sport_img02.png',               
+                   img: [],
+                   profile: '',
+                   address: '',
+                   telphone: '',
+                   email: '',
+                   website: '',
+                 }
+               ],
+            },
+            {
+               id:1,
+               name:'露易丝湖',
+               data:[],
+            },
+            {
+              id:2,
+              name:'诺奎山',
+              data:[],
+            },
+        ]
+
+module.exports.food_place = food_place;

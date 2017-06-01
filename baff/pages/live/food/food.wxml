@@ -1,0 +1,78 @@
+<view class="page">
+  <view wx:if="{{remind}}" class="remind-box">
+    <image class="remind-img" src="../../../image/loading.gif"></image>
+  </view>
+  <scroll-view scroll-y="true" bindscrolltolower="lower" style="height:{{scrollHeight}}px;" wx:else>
+
+    <view class="header">
+        <!--搜索 -->
+        <view class="search-bar">
+            <view class="search-bar__form">
+                <view class="search-bar__box">
+                    <icon class="icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="search-bar__input" value="{{search_inputVal}}" focus="{{search_inputShowed}}" bindinput="inputTyping" bindconfirm="search" confirm-type="search"/>
+                    <view class="icon-clear" wx:if="{{search_inputVal.length > 0}}" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                    </view>
+                </view>
+                <label class="search-bar__label" hidden="{{search_inputShowed}}" bindtap="showInput">
+                    <icon class="icon-search" type="search" size="14"></icon>
+                    <view class="search-bar__text">搜索你的问题</view>
+                </label>
+            </view>
+            <view class="search-bar__cancel-btn" hidden="{{!search_inputShowed}}" bindtap="hideInput">取消</view>
+        </view>
+        <image src="../../../image/mytrait2.png" class="myTrait" mode="aspectFill"></image>
+    </view>
+    
+    <view class="page__bd page__bd_spacing">         
+        <!--列表框-->
+        <view class="list_groups">
+          <view class="switch" bindtap="switch">
+            <image src="../../../image/location.png" class="icon"></image>
+            <view class="title">{{switchMode}}</view>
+          </view>
+          <picker bindchange="placeChange" value="{{placeIndex}}" range="{{_place}}" class="place">
+            <view class="title">{{_place[placeIndex]}}</view>
+            <image src="../../../image/triangle.png" class="icon"></image>
+          </picker>
+          
+          <picker bindchange="liveChange" value="{{liveIndex}}" range="{{_live}}" class="live">
+            <view class="title">{{_live[liveIndex]}}</view>
+            <image src="../../../image/triangle.png" class="icon"></image>        
+          </picker>
+
+        </view>
+        <view wx:if="{{isShowList}}">
+            <!--<template is="placeShow" data="{{selectedPlace,place_id}}"></template>-->
+            <template is="placeShow" data="{{list}}"></template>
+        </view>
+        <view wx:else>
+            <template is="mapShow" data="{{markers}}"></template>
+        </view>
+    </view>
+  </scroll-view>
+</view>
+
+<!--列表-->
+<template name="placeShow">
+    <view class="list">
+      <block wx:for="{{list}}" wx:key="*this">
+        <navigator url="{{'merchants/merchants?id='+item.id}}" class="item" wx:if="{{item.img.length>0}}">
+          <image src="{{item.img}}" mode="aspectFill" class="img"></image>
+          <view class="title">{{item.title}}</view>
+          <image src="../../../image/arrow3.png" class="arrow"></image>
+        </navigator>
+        <navigator url="{{'merchants/merchants?id='+item.id}}" class="logo_groups" wx:else >
+          <view class="logo">{{item.title}}</view>
+          <image src="../../../image/arrow3.png" class="arrow"></image>
+        </navigator>
+      </block>
+    </view>
+</template>
+
+<template name="mapShow">
+  <map id="map" longitude="108.9470400000" latitude="34.2594300000" scale="14" markers="{{markers}}" bindmarkertap="markertap" show-location style="width: 100%; height: 800px;"></map>
+</template>
+
+

@@ -1,0 +1,16 @@
+module.exports = {
+
+}
+
+var live=[
+    {id:'food',name:'美食',img:'../../image/food.png'},
+    {id:'shop',name:'购物',img:'../../image/shop.png'},
+    {id:'culture',name:'文化',img:'../../image/culture.png'},
+    {id:'fitness',name:'健身',img:'../../image/fitness.png'},
+    {id:'accommodation',name:'住宿',img:'../../image/accommodation.png'},
+    {id:'entertainment',name:'娱乐',img:'../../image/entertainment.png'},
+    {id:'scenery',name:'风景',img:'../../image/scenery.png'},
+    {id:'all',name:'全部',img:'../../image/all.png'},
+]
+
+module.exports.live = live;

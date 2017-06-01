@@ -1,0 +1,42 @@
+var util = require('../../../../utils/util.js')
+var app = getApp()
+Page({
+  data:{
+    img:[],
+    title:'',
+    profile:'',
+    address:'',
+    telphone:'',
+    email:'',
+    website:'',
+  },
+
+  onLoad:function(options){
+    console.log(options)
+    this.getMechant(options.id, options.mechant_id)
+  },
+
+  //获取商户数据
+  getMechant: function (id, mechant_id) {
+    var selectedPlace = util.getFoodPlace(id)
+    var title = selectedPlace.data[mechant_id].title
+    var img = selectedPlace.data[mechant_id].img
+    var profile = selectedPlace.data[mechant_id].profile
+    var address = selectedPlace.data[mechant_id].address
+    var telphone = selectedPlace.data[mechant_id].telphone
+    var email = selectedPlace.data[mechant_id].email
+    var website = selectedPlace.data[mechant_id].website
+    console.log("获取商户数据")
+    this.setData({
+      img: img,
+      title: title,
+      profile: profile,
+      address: address,
+      telphone: telphone,
+      email: email,
+      website: website,
+    });
+    console.log(this.data)
+  },
+
+})

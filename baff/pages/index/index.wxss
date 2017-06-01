@@ -1,0 +1,281 @@
+/**index.wxss**/
+
+/*轮播*/
+swiper-container{  
+  position: relative;  
+}  
+.swiper-container .swiper{  
+  width:100%;
+  height:500rpx; 
+}
+
+.swiper-container .swiper .item{  
+  width: 100%;  
+  height: 100%;
+  position: relative;   
+}
+
+.swiper-container .swiper .item .img{  
+  width: 100%;  
+  height: 100%;
+  position: absolute;
+  left: 0rpx;
+  top: 0rpx;
+}
+
+.swiper-container .swiper .item .index{
+  position:absolute;
+  left:50rpx;
+  top:325rpx;
+  font-size: 46rpx;
+  font-weight: bold;
+  color: white
+}
+
+.swiper-container .swiper .item .divide{
+  position: absolute;
+  left: 48rpx;
+  top:396rpx;
+  height: 7rpx;
+  width: 46rpx;
+  background-color: rgb(159, 35, 170)
+}
+
+.swiper-container .swiper .item .title{
+  position: absolute;
+  left: 47rpx;
+  top:410rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: white;
+}
+
+.swiper-container .search{
+    position: absolute;
+    width:71rpx;
+    height:70rpx;
+    left: 573rpx;
+    top:38rpx;
+}
+
+.swiper-container .myTrait{
+    width:71rpx;
+    height:70rpx;
+    position: absolute;
+    top:38rpx;
+    left: 655rpx;
+}
+
+
+
+
+
+/*班夫生活*/
+
+.bfLive{
+    display: flex;
+    flex-flow: column wrap;
+    align-content: flex-start;
+    overflow: hidden;
+    height: 500rpx;
+}
+
+.bfLive .cell1of3{
+    display: flex;
+    height:200rpx;
+    width: 25%;
+    position: relative
+}
+
+.bfLive .cell1of3 .img{
+  width: 100%;
+  height: 100%;
+}
+
+.bfLive .cell1of3 .title{
+  font-size: 32rpx;
+  color: white
+}
+
+.bfLive .cell1of3 .arrow{
+  position: absolute;
+  left: 146rpx;
+  top:140rpx;
+  height: 27rpx;
+  width: 24rpx;
+}
+
+.bfLive .cell2of3{
+    display: flex;
+    height: 300rpx;
+    width: 25%;
+    position: relative
+}
+
+.bfLive .cell2of3 .img{
+  width: 100%;
+  height: 100%;
+}
+
+.bfLive .cell2of3 .title{
+  font-size: 32rpx;
+  color: white
+}
+
+
+.food_icon{
+  height: 52rpx;
+  width: 70rpx;
+  position: absolute;
+  left:14rpx;
+  top:59rpx;
+}
+
+.accommodation_icon{
+  position: absolute;
+  left: 14rpx;
+  top:32rpx;
+  width: 68rpx;
+  height: 53rpx;
+}
+
+.shop_icon{
+  position: absolute;
+  left: 13rpx;
+  top: 150rpx;
+  width: 67rpx;
+  height: 58rpx;
+}
+
+.entertainment_icon{
+  position: absolute;
+  left: 16rpx;
+  top:40rpx;
+  width: 55rpx;
+  height: 66rpx;
+}
+
+.culture_icon{
+  position: absolute;
+  left: 17rpx;
+  top:52rpx;
+  width: 50rpx;
+  height: 68rpx;
+}
+
+.liveScenery_icon{
+  position: absolute;
+  left: 20rpx;
+  top:30rpx;
+  width:64rpx;
+  height: 56rpx;
+}
+
+.fitness_icon{
+  position: absolute;
+  left: 19rpx;
+  top:139rpx;
+  height: 55rpx;
+  width: 75rpx;
+}
+
+.all_icon{
+  position: absolute;
+  left: 17rpx;
+  top: 34rpx;
+  height: 63rpx;
+  width:63rpx;
+}
+
+
+
+
+/*班夫宝典*/
+.bfBook{
+    display: flex;
+    flex-flow: row wrap;
+    overflow: hidden;
+    margin: 25rpx;
+}
+
+.bfBook-item{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    box-sizing: border-box;
+    width: 50%;
+    height: 180rpx;
+    
+}
+
+.bfBook .bfBook-item .title{
+    font-size: 38rpx;
+    line-height: 30rpx;
+    color: white;
+    font-weight:bold;
+}
+
+.bfBook .bfBook-item .division{
+    font-size: 38rpx;
+    color: white;
+    font-weight:bold;
+}
+
+.bfBook .bfBook-item .logo{
+    font-size: 22rpx;
+    color:white;
+}
+
+/*精彩班夫*/
+.bfWonderful_title{
+    font-size:38rpx;
+    line-height: 45px;
+    margin: 30rpx auto 35rpx;
+    text-align:  center;
+    color: rgb(103, 46, 108);
+    font-weight:bold;
+}
+
+
+.list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: #f0eff5;
+    background-repeat: no-repeat;
+    background-size: 100% auto; 
+    background-position: bottom center;
+    /*使用网络资源*/
+    /*background-image: url('../../image/background.png');*/
+}
+
+.list .item {
+  display: flex;
+  border-bottom: 1rpx solid #eee;
+  cursor: pointer;
+  position: relative;
+}
+
+.list .item .poster {
+  width: 100%;
+  height: 230rpx;
+  
+}
+
+.list .item .title{
+    color:white;
+    position:absolute;
+    top:155rpx;
+    left:35rpx;
+    font-size: 38rpx;
+    font-weight:bold;
+}
+
+.list .item .icon{
+    width:25rpx;
+    height: 32rpx;
+    position: absolute;
+    top:155rpx;
+    right:25rpx;
+}
+

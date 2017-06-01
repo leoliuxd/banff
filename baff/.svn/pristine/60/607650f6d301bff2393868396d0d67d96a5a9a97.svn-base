@@ -1,0 +1,179 @@
+
+var util=require('../../utils/util.js')
+var app = getApp()
+Page({
+  data:{
+    search_inputShowed: false,
+    search_inputVal: "",
+    search_visibility:'hidden',
+
+    scrollHeight:0,
+    imgUrls:[
+      '../../image/swiper_img01.png',
+      '../../image/swiper_img02.png',
+    ],
+    book:[
+      {id:'advention',name:'景点探险',color:'rgb(63,193,204)'},
+      {id:'season',name:'季节活动',color:'rgb(255,183,22)'},
+      {id:'tips',name:'旅游贴士',color:'rgb(130,189,65)'},
+      {id:'label',name:'名词标示',color:'rgb(0,148,131)'},
+    ],
+    wonderful:[],
+    swiperCurrent:0,
+
+    //班夫生活
+    live:[],
+    food:{},
+    shop:{},
+    culture:{},
+    fitness:{},
+    accommodation:{}, 
+    entertainment:{},
+    scenery:{},
+
+  },
+
+  onLoad: function () {
+    var that = this;
+    var live
+    console.log('onLoad')
+    this.getBanff()
+    //app.getUser()
+    // wx.login({
+    //   success: function (res) {
+    //     console.log(res.code)
+    //   }
+    // });
+
+    this.getWonderful()
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          scrollHeight: res.windowHeight,
+        });
+      }
+    });
+  },
+
+    // 搜索
+    showInput: function () {
+        this.setData({
+            search_inputShowed: true
+        });
+    },
+    hideInput: function () {
+      this.setData({
+          search_inputVal: "",
+          search_inputShowed: false
+      });
+    },
+    clearInput: function () {
+      this.setData({
+          search_inputVal: ""
+      });
+    },
+    inputTyping: function (e) {
+      this.setData({
+          search_inputVal: e.detail.value
+      });
+    },
+    searchDisplay:function(){
+      var search_visibility=this.data.search_visibility
+      if(search_visibility == 'hidden'){
+        search_visibility='visible'
+      }else{
+        search_visibility='hidden'
+      }
+      this.setData({
+        search_visibility:search_visibility,
+        search_inputShowed: false,
+      })
+      
+    },
+
+  //轮播
+  swiperChange: function(e){
+    this.setData({  
+        swiperCurrent: e.detail.current  
+    })  
+},
+
+  //精彩班夫动态加载
+   lower: function (e) {
+     wx.showNavigationBarLoading();
+     var that = this;
+     setTimeout(function(){wx.hideNavigationBarLoading();that.nextLoad();}, 1000);
+     console.log("lower")
+   },
+
+  
+
+  nextLoad: function(){
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 4000
+    })
+    var next = util.getWonderfulNext();
+    //console.log(next);
+    this.setData({
+      wonderful: this.data.wonderful.concat(next),
+    });
+    setTimeout(function(){
+      wx.showToast({
+        title: '加载成功',
+        icon: 'success',
+        duration: 2000
+      })
+    },3000)
+  },
+
+ 
+  //获取班夫生活数据
+   getBanff:function(){
+    var that=this
+    if (app.cache['live']) { liveRender(app.cache['live']); }
+    
+
+    function liveRender(info){
+      var food = info[0]
+      var shop = info[1]
+      var culture = info[2]
+      var fitness = info[3]
+      var accommodation = info[4]
+      var entertainment = info[5]
+      var scenery = info[6]
+      that.setData({
+        food: food,
+        shop: shop,
+        culture: culture,
+        fitness: fitness,
+        accommodation: accommodation,
+        entertainment: entertainment,
+        scenery: scenery,
+      })
+    }
+
+    wx.request({
+      url: 'http://www.banfflakelouise.cn/m/live/categories',
+      success: function (res) {
+        if (res.data) {
+          var info = res.data;
+          if (info.length != 0) {
+            app.saveCache('live', info);
+            liveRender(info)
+          }
+        } else { app.removeCache('live'); }
+      }
+    })  
+   },
+
+  //获取精彩班夫数据
+  getWonderful: function(){
+    var wonderful = util.getWonderful()
+    console.log("获取精彩班夫数据")
+    this.setData({
+      wonderful:wonderful
+    });
+  },
+})

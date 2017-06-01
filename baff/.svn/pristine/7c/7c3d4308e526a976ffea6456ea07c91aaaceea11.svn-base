@@ -1,0 +1,12 @@
+module.exports = {
+
+}
+
+var book=[
+    {id:'advention',img:'../../image/advention.png'},
+    {id:'activity',img:'../../image/activity.png'},
+    {id:'tips',img:'../../image/tips.png'},
+    {id:'mark',img:'../../image/mark.png'},
+]
+
+module.exports.book = book;
