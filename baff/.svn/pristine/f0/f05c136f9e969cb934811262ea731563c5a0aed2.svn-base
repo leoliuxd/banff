@@ -1,7 +1,0 @@
-<view class="Page">
-    <scroll-view scroll-y="true" class="tips" style="height:{{scrollHeight}}px;">
-      <block wx:for="{{title}}" wx:key="*this">
-       <navigator url="{{'tips_content/tips_content?id='+index}}" class="tips_item">{{item}}</navigator>
-      </block>
-    </scroll-view>
-</view>
