@@ -18,8 +18,8 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#834483",
+    "navigationBarTitleText": "班夫旅游",
+    "navigationBarTextStyle":"white"
   }
 }

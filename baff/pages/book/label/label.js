@@ -19,6 +19,9 @@ Page({
         });
       }
     });
+    wx.setNavigationBarTitle({
+      title: "名词标示"
+    })
   },
 
   getLabel:function(){
@@ -33,7 +36,7 @@ Page({
 
     //获取标示页数据
     wx.request({
-      url: 'http://www.smallapp.cn/sign/signs?size=12',
+      url: 'https://smallapp.dragontrail.cn/sign/signs?appid=banfu123&size=12',
       success: function (res) {
         if (res.data) {
           var info = res.data;
@@ -76,13 +79,12 @@ Page({
       var label = that.data.label.concat(info)
       that.setData({
         label: label,
-        isMoreData: '加载成功！'
       })
 
     }
 
     wx.request({
-      url: 'http://www.smallapp.cn/sign/signs?size=12&page='+page,
+      url: 'https://smallapp.dragontrail.cn/sign/signs?appid=banfu123&size=12&page='+page,
       success: function (res) {
         if (res.data) {
           var info = res.data;
@@ -90,21 +92,9 @@ Page({
             labelNextRender(info)
           }else{
             console.log('已经没有数据了！')
-            that.setData({
-              isMoreData: '已经没有数据了！'
-            })
           }
         }
       },
-      complete: function () {
-        setTimeout(function () {
-          wx.showToast({
-            title: that.data.isMoreData,
-            icon: 'success',
-            duration: 1000
-          })
-        }, 1000)
-      }
     })
 
   },

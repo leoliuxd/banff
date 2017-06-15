@@ -1,65 +1,57 @@
-
+var event = require('../../utils/event.js')
+var comm = require('../../utils/common.js'); 
 //获取应用实例
 var app = getApp()
 Page({
   data: {
+    remind:'加载中',
     winWidth: 0,
     winHeight: 0,
     currentTab: 0,
-    mytrait:[
-      {
-        id:1,
-        title:'明尼旺卡湖',
-        img:'../../image/w_rose.png',
-      },
-      {
-        id: 2,
-        title: '哥伦比亚平原',
-        img: '../../image/w_columbia.png',
-      },
-      {
-        id: 3,
-        title: '阳光村滑雪场',
-        img: '../../image/w_banfuTown.png',
-      },
-    ],
-    reached:[
-      {
-        id:1,
-        title:'班夫温泉城堡酒店',
-        img: '../../image/w_rose.png',
-        date:"2017.5.18"
-      },
-      {
-        id: 2,
-        title: '露易丝湖酒店',
-        img: '../../image/w_banfuTown.png',
-        date: "2017.5.18"
-      },
-      {
-        id: 3,
-        title: '哥伦比亚酒店',
-        img: '../../image/w_columbia.png',
-        date: "2017.5.20"
-      }
-    ],
+    mytrait:[],
+    reached:[],
 
    
   },
-  onLoad: function () {
+  onLoad: function (option) {
     var that = this;
-
+    var current=0
+    if(option.current){
+      current = parseInt(option.current)
+    }
+    this.getTrait()
     wx.getSystemInfo({
 
       success: function (res) {
         that.setData({
           winWidth: res.windowWidth,
-          winHeight: res.windowHeight
+          winHeight: res.windowHeight,
+          currentTab: current
         });
       }
-
     });
+    wx.setNavigationBarTitle({
+      title: '我的行程'
+    })
+
+    event.on('isCollectChanged', that, function (id) {
+      var mytrait = that.data.mytrait
+      for (var i in mytrait) {
+        if (id === mytrait[i].id) {
+          mytrait.splice(i, 1)
+          break
+        }
+      }
+      that.setData({
+        mytrait: mytrait
+      })
+    })
   },
+
+  onUnload: function () {
+    event.remove('isCollectChanged', this);
+  },
+
 
   bindChange: function (e) {
     this.setData({ currentTab: e.detail.current });
@@ -78,9 +70,10 @@ Page({
     }
   },
 
-  skip:function(){
+  skip:function(e){
+    var id=parseInt(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: '../test/test',
+      url: '../live/food/merchants/merchants?appid=banfu123&id='+id,
     })
   },
 
@@ -101,9 +94,124 @@ Page({
           that.setData({
             mytrait: mytrait
           })
-        } 
+
+          //通知后台删除
+          wx.request({
+            url: 'https://smallapp.dragontrail.cn/schedule/mark',
+            method: 'POST',
+            data: {
+              ukey: app.cache.userdata,
+              appid: 'banfu123',
+              status: 2,
+              schedule_id: id,
+            },
+            success: function (res) {
+              if (res.data.success) {
+                wx.showToast({
+                  title: '删除成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+
+              } else {
+                wx.showToast({
+                  title: '删除失败',
+                  icon: 'success',
+                  duration: 2000
+                })
+              }
+            },
+            fail: function (res) {
+              wx.showToast({
+                title: '删除失败',
+                icon: 'success',
+                duration: 2000
+              })
+            }
+          })
+        }
+     
       }
     })
+  },
+
+  getTrait:function(){
+    var that=this
     
-  }
+    function reachedRender(info){
+      console.log(info)
+      var reached=info
+      that.setData({
+        reached: reached
+      })
+    }
+
+    var loadsum=0
+    loadsum++
+    wx.request({
+      url: 'https://smallapp.dragontrail.cn/schedule/arrivedlist', 
+      data: {
+        ukey: app.cache.userdata,
+        appid: 'banfu123',
+      },
+      success: function (res) {
+        if (res.data) {
+          var info = res.data;
+          if (info.length != 0) {
+            reachedRender(info)
+          }
+        }
+      },
+      complete: function () {
+        loadsum--
+        if(!loadsum){
+          that.setData({
+            remind:''
+          })
+        }
+      }
+    })
+
+    function mytraitRender(info){
+      console.log(info)
+      var mytrait=info
+      that.setData({
+        mytrait:info
+      })
+    }
+
+    loadsum++
+    wx.request({
+      url: 'https://smallapp.dragontrail.cn/schedule/list',
+      method: 'POST',
+      data: {
+        ukey:app.cache.userdata,
+        appid:'banfu123',
+      },
+      success: function (res) {
+        console.log("list: ")
+        console.log(res)
+        if (res.data) {
+          var info = res.data;
+          if (info.length != 0) {
+            mytraitRender(info)
+          }
+        }
+      },
+      complete: function () {
+        loadsum--
+        if (!loadsum) {
+          that.setData({
+            remind: ''
+          })
+        }
+      }
+    })
+  },
+
+  //图片加载错误处理
+  errImg: function (ev) {
+    var that = this;
+    comm.errImgFun(ev, that);
+  }, 
 })

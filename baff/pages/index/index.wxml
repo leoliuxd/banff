@@ -1,23 +1,35 @@
 <view class="Page">
-  <view wx:if="{{remind}}" class="remind-box">
-    <image class="remind-img" src="../../image/loading.gif"></image>
+  <view wx:if="{{remind}}" class="weui-loadmore">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
   </view>
 
   <scroll-view scroll-y="true" class="list" bindscrolltolower="lower" style="height:{{scrollHeight}}px;" wx:else>
     <!--轮播 -->
     <view class="swiper-container">
-        <swiper class="swiper" current="{{swiperCurrent}}" bindchange="swiperChange">
-            <block wx:for="{{hot}}" wx:key="imgUrls">
+        <swiper class="swiper" interval="3000" duration="500" current="{{swiperCurrent}}" bindchange="swiperChange">
+            <block wx:for="{{hot}}" wx:key="*this">
                 <swiper-item>
-                    <navigator url="{{'../details/content/content?id='+item.id}}" class="item">
-                      <image src="{{item.hot_img}}" mode="aspectFill" class="img"/>
-                      <view class="index">{{index+1}}</view>
-                      <view class="divide"></view>
-                      <view class="title">{{item.title}}</view>
+                    <navigator url="{{item.url}}" class="swiper_item">
+                      <image src="{{item.hot_img}}" mode="aspectFill" class="img" binderror="errImg" data-err-img="hot[{{index}}].img"/>
+                      <view class="content_groups">
+                        <view class="index">{{index+1}}</view>
+                        <view class="divide"></view>
+                        <view class="swiper_title">{{item.title}}</view>
+                      </view>
+                      
                     </navigator>        
                 </swiper-item>
             </block>
         </swiper>
+        <view class="dots">  
+          <block wx:for="{{hot}}" wx:key="*this">  
+            <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>  
+          </block>  
+        </view> 
+
+
+
             <image src="../../image/swiper_icon1.png" class="search" mode="aspectFill" bindtap="search" ></image>
             <image src="../../image/swiper_icon2.png" class="myTrait" mode="aspectFill" bindtap="myTrait"></image>
     </view>
@@ -84,7 +96,7 @@
             <view class="bfBook">
                 <block wx:for="{{book}}" wx:key="id">
                     <navigator class="bfBook-item" style="background-color:{{item.color}};" url="{{'../book/'+item.en+'/'+item.en}}">
-                        <view class="title" style="margin-top:38rpx;">{{item.name}}</view>
+                        <view class="title">{{item.name}}</view>
                         <view class="division">—</view>
                         <view class="logo">班夫宝典</view>
                     </navigator>
@@ -94,19 +106,23 @@
         
         <!--精彩班夫-->
         <view class="bfWonderful_title"> / 精彩班夫 /</view>
-        
-            <block wx:for="{{wonderful}}" wx:key="*this">
+
+          <view class="bfWonderful" style="background-image: url('https://smallapp.dragontrail.cn/assets/images/smallapp/background.png')">
+            <block wx:for="{{wonderful}}" wx:key="id">
                 <navigator url="{{item.url}}" class="item" wx:if="{{item.img.length > 0}}">
-                      <image class="poster" src="{{item.img}}" mode="aspectFill"></image>
+                      <image class="poster" src="{{item.img}}" mode="aspectFill" binderror="errImg" data-err-img="wonderful[{{index}}].img"></image>
                       <view class="title">{{item.title}}</view>
                       <image src="../../image/arrow.png" class="icon"></image>
+                      <view class="theme_icon" wx:if="{{item.is_theme == 1}}">专题</view>
                 </navigator>
-                <navigator url="{{item.url}}" class="item" style="" wx:else>
+                <navigator url="{{item.url}}" class="item"  wx:else>
                       <view class="poster" style="background-color:rgb(104, 46, 107);"></view>
                       <view class="title">{{item.title}}</view>
                       <image src="../../image/arrow.png" class="icon"></image>
+                      <view class="theme_icon" wx:if="{{item.is_theme == 1}}">专题</view>
                 </navigator>
             </block>
+          </view>
   </scroll-view>
     
 </view>

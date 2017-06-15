@@ -21,7 +21,7 @@ Page({
     }
     //获取test页面数据
     wx.request({
-      url: 'http://www.smallapp.cn/place/detail?place_id=1',
+      url: 'https://smallapp.dragontrail.cn/place/detail?place_id=1',
       success: function (res) {
         if (res.data) {
           var info = res.data;

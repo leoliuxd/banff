@@ -1,3 +1,4 @@
+
 var WxParse = require('../../../wxParse/wxParse.js');
 var app = getApp()
 Page({
@@ -30,18 +31,22 @@ Page({
   getContent:function(id){
     var that=this
     function contentRender(info){
-      var content=info.content
-      WxParse.wxParse('content', 'html', content, that, 5);
+      var content =unescape(info.content)
+      console.log(content)
+      WxParse.wxParse('content', 'html', content, that, 12.5);
       that.setData({
         img:info.img,
         title:info.title,
         author: info.author + ' ' + info.created_time,
-        id:info.id,
+        id:info.place_id,
+      })
+      wx.setNavigationBarTitle({
+        title: info.title
       })
     }
     //获取文章数据
     wx.request({
-      url: 'http://www.smallapp.cn/article/detail?id='+id,
+      url: 'https://smallapp.dragontrail.cn/article/detail?appid=banfu123&id='+id,
       success: function (res) {
         if (res.data) {
           var info = res.data;
@@ -58,6 +63,13 @@ Page({
     })
 
 
-  }
+  },
+
+  //图片加载错误处理
+  errImg: function () {
+    this.setData({
+      img:'../../../image/default.png'
+    })
+  }, 
 
 })

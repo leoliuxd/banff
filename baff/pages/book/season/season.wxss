@@ -14,16 +14,16 @@
   font-size: 28rpx;
   color: #999999;
   margin-top:18rpx;
-  margin-left: 256rpx;
+  margin-left: 48%;
   float: left;
 }
 
 .picker_groups .icon{
   width: 23rpx;
   height: 16rpx;
-  float: left;
+  float: right;
+  margin-right: 20rpx;
   margin-top:30rpx;
-  margin-left: 190rpx;
 }
 
 /*内容*/
@@ -68,8 +68,8 @@
 
 .list .item .meta1 .icon1{
   position: absolute;
-  height: 23rpx;
-  width: 23rpx;
+  height: 28rpx;
+  width: 32rpx;
   left:28rpx;
   top:308rpx;
 }
@@ -85,9 +85,10 @@
 .list .item .meta1 .time{
   position: absolute;
   left: 65rpx;
-  top:305rpx;
-  font-size: 21rpx;
+  top:309rpx;
+  font-size: 23rpx;
   color: white;
+  font-weight: bold;
 }
 
 .list .item .meta2{

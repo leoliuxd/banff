@@ -1,4 +1,4 @@
-var util=require('../../../utils/util.js')
+var comm = require('../../../utils/common.js');  
 var app = getApp()
 Page({
     data: {
@@ -11,6 +11,9 @@ Page({
     onLoad:function(){
         console.log('onLoad') 
         this.getAdvention()
+        wx.setNavigationBarTitle({
+          title: "景点探险"
+        })
     },
 
     kindToggle: function (e) {
@@ -27,6 +30,8 @@ Page({
 
 
       function sceneryRender(info){
+        console.log('景点数据:　')
+        console.log(info)
         var scenery={
           id:'',
           name:'',
@@ -44,7 +49,7 @@ Page({
       var loadsum=0
       loadsum++
       wx.request({
-        url: 'http://www.smallapp.cn/place/allplaces?category_id=7',
+        url: 'https://smallapp.dragontrail.cn/place/allplaces?appid=banfu123&category_id=2',
         success: function (res) {
           if (res.data) {
             var info = res.data;
@@ -64,6 +69,8 @@ Page({
       })
 
       function adventionRender(info){
+        console.log('探险数据: ')
+        console.log(info)
         var advention={
           id:'',
           name:'',
@@ -81,7 +88,7 @@ Page({
       
       loadsum++
       wx.request({
-        url: 'http://www.smallapp.cn/live/twocategories?id=6',
+        url: 'https://smallapp.dragontrail.cn/live/twocategories?appid=banfu123&id=5',
         success: function (res) {
           if (res.data) {
             var info = res.data;
@@ -100,4 +107,10 @@ Page({
         }
       })
   },
+
+    //图片加载错误处理
+    errImg: function (ev) {
+      var that = this;
+      comm.errImgFun(ev, that);
+    }, 
 });

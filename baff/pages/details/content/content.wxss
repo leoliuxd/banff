@@ -25,11 +25,12 @@
 .list .header .subTitle_groups {
   margin-left: 25rpx;
   margin-bottom: 70rpx;
+  display: flex;
+  text-align: center;
 }
 
 .list .header .subTitle_groups .subTitle{
-  float: left;
-  font-size: 20rpx;
+  font-size: 22rpx;
   color: #666666;
   margin-top: 20rpx;
 }
@@ -42,8 +43,8 @@
 }
 
 .list .body{
-  padding-left: 25rpx;
-  padding-right: 25rpx;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
   font-size: 28rpx;
   line-height: 50rpx;
   margin-bottom: 70rpx;

@@ -1,10 +1,10 @@
-var util=require('../../../utils/util.js')
+var comm = require('../../../utils/common.js');  
 var app = getApp()
 Page({
     data:{
         remind:'加载中',
         scrollHeight:0,
-        seasonName:['班夫:春季','班夫:夏季','班夫:秋季','班夫:冬季'],
+        seasonName:['春季','夏季','秋季','冬季'],
         seasonIndex:0,
         selectedSeason:[],
         season:[],
@@ -18,15 +18,21 @@ Page({
         wx.getSystemInfo({
           success: function (res) {
             that.setData({
-              scrollHeight: res.windowHeight,
+              scrollHeight: res.windowHeight-90,
               selectedSeason: selectedSeason
             });
           }
         });
+        wx.setNavigationBarTitle({
+          title: "季节活动"
+        })
     },
 
     //转换季节
     seasonChange: function(e) {
+        this.setData({
+          remind:'加载中'
+        })
         this.getSeason(parseInt(e.detail.value)+1)
         this.setData({
             seasonIndex:e.detail.value,
@@ -68,7 +74,7 @@ Page({
       }
 
       wx.request({
-        url: 'http://www.smallapp.cn/festival/festivals?festival_category_id='+id,
+        url: 'https://smallapp.dragontrail.cn/festival/festivals?appid=banfu123&festival_category_id='+id,
         success: function (res) {
           if (res.data) {
             var info = res.data;
@@ -84,4 +90,10 @@ Page({
         }
       }) 
     },
+
+    //图片加载错误处理
+    errImg: function (ev) {
+      var that = this;
+      comm.errImgFun(ev, that);
+    }, 
 })

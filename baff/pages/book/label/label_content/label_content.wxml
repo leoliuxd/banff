@@ -1,13 +1,15 @@
 <view class="Page">
-  <view wx:if="{{remind}}" class="remind-box">
-    <image class="remind-img" src="../../../../image/loading.gif"></image>
+  <view wx:if="{{remind}}" class="weui-loadmore">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
   </view>
     <swiper class="swiper" current="{{current}}" wx:else>
       <block wx:for="{{labels}}" wx:key="id">
         <swiper-item>
           <scroll-view scroll-y="true" style="height:1200rpx;">
             <view class="body" wx:if="{{item.img.length > 0}}">
-              <image src="{{item.img}}" mode="aspectFill" class="img"></image>
+              <image src="{{item.img}}" mode="aspectFill" class="img" binderror="errImg" data-err-img="labels[{{index}}].img" wx:if="{{item.img.length > 0}}"></image>
+              <image src="../../../../image/default.png" mode="aspectFill" class="img" wx:else></image>
               <view class="title">{{item.name}}</view>
               <view class="divide"></view>
               <view class="content"><text>{{item.content}}</text></view>

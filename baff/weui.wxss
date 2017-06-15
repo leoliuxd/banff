@@ -1,6 +1,6 @@
 page {
   line-height: 1.6;
-  font-family: "Microsoft YaHei" -apple-system-font, "Helvetica Neue", sans-serif;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
 }
 icon {
   vertical-align: middle;

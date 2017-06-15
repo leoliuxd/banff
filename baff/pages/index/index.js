@@ -1,9 +1,9 @@
-
-var util=require('../../utils/util.js')
+var comm = require('../../utils/common.js'); 
 var app = getApp()
 Page({
   data:{
     
+    user:{},
     remind: '加载中',
     scrollHeight:0,
     hot:[],
@@ -27,24 +27,46 @@ Page({
   },
 
   onLoad: function () {
-    var that = this;
-    var live
-    console.log('onLoad')
-    this.getBanff()
-    //app.getUser()
-    // wx.login({
-    //   success: function (res) {
-    //     console.log(res.code)
-    //   }
-    // });
+    //登录
+    this.login()
+  },
 
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          scrollHeight: res.windowHeight,
-        });
-      }
-    });
+  login:function(){
+    var that=this
+    //如果有缓存，则提前加载缓存
+    try{
+      that.response()
+    }catch(e){
+      app.cache={}
+      wx.clearStorage()
+    }
+
+    //然后在尝试登录用户，如果缓存更新将执行该回调函数
+    app.getUser(function(status){
+      that.response.call(that,status)
+    })
+
+     that.getBanff()
+
+     wx.getSystemInfo({
+       success: function (res) {
+         that.setData({
+           scrollHeight: res.windowHeight,
+         });
+       }
+     });
+  },
+
+  response:function(status){
+    var that=this
+    if(status){
+      console.log('目前的情况是: ' + status)
+    }
+
+    that.setData({
+      user:app._user
+    })
+
   },
 
   search:function(){
@@ -96,9 +118,9 @@ Page({
       var wonderful = that.data.wonderful.concat(info)
       for (var i in wonderful) {
         if (!parseInt(wonderful[i].is_theme)) {
-          wonderful[i].url = '../details/content/content?id=' + wonderful[i].id
+          wonderful[i].url = '../details/content/content?appid=banfu123&id=' + wonderful[i].id
         }else{
-          wonderful[i].url = '../details/list/list?id=' + wonderful[i].id + '&title=' + wonderful[i].title + '&img=' + wonderful[i].img
+          wonderful[i].url = '../details/list/list?appid=banfu123&id=' + wonderful[i].id
         }
       }
       that.setData({
@@ -107,7 +129,7 @@ Page({
     }
 
     wx.request({
-      url: 'http://www.smallapp.cn/article/articles?size=3&page='+page,
+      url: 'https://smallapp.dragontrail.cn/article/articles?appid=banfu123&size=4&page='+page,
       success: function (res) {
         if (res.data) {
           var info = res.data;
@@ -115,11 +137,6 @@ Page({
             wonderfulRender(info)
           } else {
             console.log('已经没有数据了！')
-            wx.showToast({
-              title: '已经没有数据了！',
-              icon: 'success',
-              duration: 1000
-            })
           }
         }
       },
@@ -133,6 +150,15 @@ Page({
     
     //渲染热门文章
      function hotRender(info){
+       console.log(info)
+       var hot=info
+       for (var i in info) {
+         if (!parseInt(info[i].is_theme)) {
+           hot[i].url = '../details/content/content?appid=banfu123&id=' + info[i].id
+         } else {
+           hot[i].url = '../details/list/list?appid=banfu123&id=' + info[i].id
+         }
+       }
        that.setData({
          hot:info,
        })
@@ -141,7 +167,7 @@ Page({
      loadsum++
     //获取热门数据
      wx.request({
-       url: 'http://www.smallapp.cn/article/hot',
+       url: 'https://smallapp.dragontrail.cn/article/hot?appid=banfu123',
        success: function (res) {
          if (res.data) {
            var info = res.data;
@@ -185,7 +211,7 @@ Page({
     //获取班夫生活数据
     loadsum++
     wx.request({
-      url: 'http://www.smallapp.cn/live/categories',
+      url: 'https://smallapp.dragontrail.cn/live/categories?appid=banfu123',
       success: function (res) {
         if (res.data) {
           var info = res.data;
@@ -204,6 +230,9 @@ Page({
         }
       }
     })
+
+
+
     //渲染班夫宝典
     function bookRender(info){
       var book=[]
@@ -217,7 +246,6 @@ Page({
       for (var i in book){
         book[i].en=that.data._book[i]
       }
-      console.log(book)
       that.setData({
         book:book
       })
@@ -225,12 +253,11 @@ Page({
     loadsum++
     //获取班夫宝典数据
     wx.request({
-      url: 'http://www.smallapp.cn/know/categories',
+      url: 'https://smallapp.dragontrail.cn/know/categories?appid=banfu123',
       success: function (res) {
         if (res.data) {
           var info = res.data;
           if (info.length != 0) {
-            console.log(info)
             bookRender(info)
           }
         }
@@ -247,12 +274,14 @@ Page({
 
     //渲染精彩班夫
     function wonderfulRender(info){
+      console.log(info)
       var wonderful = info
       for(var i in info){
         if (!parseInt(info[i].is_theme)){
-          wonderful[i].url='../details/content/content?id='+info[i].id
+          wonderful[i].url ='../details/content/content?appid=banfu123&id='+info[i].id
         }else{
-          wonderful[i].url = '../details/list/list?id=' + info[i].id + '&title=' + info[i].title + '&img=' + info[i].img
+          //传递给专题页面的内容
+          wonderful[i].url = '../details/list/list?appid=banfu123&id=' + info[i].id
         }
       }
       that.setData({
@@ -263,7 +292,7 @@ Page({
     loadsum++
     //获取精彩班夫数据
     wx.request({
-      url: 'http://www.smallapp.cn/article/articles?page=1&size=4',
+      url: 'https://smallapp.dragontrail.cn/article/articles?appid=banfu123&page=1&size=4',
       success: function (res) {
         if (res.data) {
           var info = res.data;
@@ -283,4 +312,9 @@ Page({
     })
    },
 
+   //图片加载错误处理
+   errImg: function (ev) {
+     var that = this;
+     comm.errImgFun(ev, that);
+   }, 
 })

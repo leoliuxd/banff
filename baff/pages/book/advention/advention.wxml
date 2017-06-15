@@ -1,8 +1,9 @@
 <view class="Page" style="margin:0rpx 25rpx;">
-  <view wx:if="{{remind}}" class="remind-box">
-    <image class="remind-img" src="../../../image/loading.gif"></image>
+  <view wx:if="{{remind}}" class="weui-loadmore">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
   </view>
-        <view class="kind-list">
+        <view class="kind-list" wx:else>
                 <!--景点-->
                 <view class="kind-list__item">
                     <view id="{{scenery.id}}" class="weui-flex kind-list__item-hd {{scenery.open ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle">
@@ -16,7 +17,8 @@
                       <view class="weui-cells {{scenery.open ? 'weui-cells_show' : ''}} scenery">
                         <block wx:for="{{scenery.pages}}" wx:for-item="page" wx:key="*this">
                           <navigator url="{{'../../live/food/merchants/merchants?id='+page.id}}" class="scenery_item">
-                            <image src="{{page.img}}" mode="aspectFill" class="scenery_img"></image>
+                            <image src="{{page.img}}" mode="aspectFill" class="scenery_img" binderror="errImg" data-err-img="scenery.pages[{{index}}].img" wx:if="{{page.img.length > 0}}"></image>
+                            <image src="../../../image/default.png" mode="aspectFill" class="scenery_img" wx:else></image>
                             <view class="title">{{page.title}}</view>
                             <image src="../../../image/arrow.png" class="icon"></image>
                                         
@@ -39,7 +41,8 @@
                         <block wx:for="{{advention.pages}}" wx:for-item="page" wx:key="*this">
                           <navigator class="advention_item" style="{{ index % 2 == 0 ? 'padding-right:7rpx;' : 'padding-left:7rpx;'}}" url="{{'../sport/sport?id='+page.id+'&name='+page.name}}">
 
-                            <image src="{{page.img}}" mode="aspectFill" class="img"></image>
+                            <image src="{{page.img}}" mode="aspectFill" class="img" binderror="errImg" data-err-img="advention.pages[{{index}}].img" wx:if="{{page.img.length > 0}}"></image>
+                            <image src="../../../image/default.png" mode="aspectFill" class="img" wx:else></image>
                             <view class="title">{{page.name}}</view>               
                           </navigator>
                         </block>  

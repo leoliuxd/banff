@@ -1,3 +1,4 @@
+var comm = require('../../../../utils/common.js');  
 var app = getApp()
 Page({
   data:{
@@ -22,7 +23,9 @@ Page({
         });
       }
     });
-
+    wx.setNavigationBarTitle({
+      title: "名词标示"
+    })
     function getPageSum(){
       var sum=that.data.length
       return '/'+sum+'  >'
@@ -48,7 +51,7 @@ Page({
 
     //获取标示内容页数据
     wx.request({
-      url: 'http://www.smallapp.cn/sign/signs?size=100',
+      url: 'https://smallapp.dragontrail.cn/sign/signs?appid=banfu123&size=100',
       success: function (res) {
         if (res.data) {
           var info = res.data;
@@ -64,4 +67,10 @@ Page({
       }
     })
   },
+
+  //图片加载错误处理
+  errImg: function (ev) {
+    var that = this;
+    comm.errImgFun(ev, that);
+  }, 
 })

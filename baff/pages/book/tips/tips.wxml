@@ -1,6 +1,7 @@
 <view class="Page">
-    <view wx:if="{{remind}}" class="remind-box">
-      <image class="remind-img" src="../../../image/loading.gif"></image>
+    <view wx:if="{{remind}}" class="weui-loadmore">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载</view>
     </view>
     <view class="tips" wx:else>
       <block wx:for="{{tips}}" wx:key="*this">

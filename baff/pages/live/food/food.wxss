@@ -1,92 +1,33 @@
 /*搜索*/
 .header{
-     display: flex;
-}
-.search-bar{
-    position: relative;
-    margin: 25rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    width:620rpx;
+  display: flex;
+  width: 100%;
 }
 
-.search-bar__form{
-    position: relative;
-    -webkit-box-flex: 1;
-    -webkit-flex: auto;
-    flex: auto;
-    border-radius: 60rpx;
-    background: #FFFFFF;  
+.search_groups{
+  display: flex;
+  border: 2rpx solid #999999;
+  margin: 30rpx;
+  flex: 1rpx;
+  border-radius: 60rpx;
 }
 
-.search-bar__box{
-    position: relative;
-    padding-left: 60rpx;
-    padding-right: 60rpx;
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 1;
+.search_groups .icon-search{
+  padding-left: 50rpx;
+  padding-top: 25rpx;
 }
 
-.icon-search_in-box{
-    position: absolute;
-    left: 20rpx;
-    top: 14rpx;
-}
-
-.search-bar__input{
+.search_groups .input{
     height: 72rpx;
     line-height: 56rpx;
-    font-size: 28rpx;
-}
-
-.icon-clear{
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 14rpx 16rpx;
-    font-size: 0;
-}
-
-.search-bar__label{
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-    border-radius: 60rpx;
-    color: #999999;
-    background: rgb(240, 240, 240);
-}
-
-.icon-search{
-    margin-top: 10rpx;
-    margin-left: 25rpx;
-    font-size: inherit;
-}
-
-.search-bar__text{
-    position: absolute;
-    top:20rpx;
-    left:60rpx;
-    display: inline-block;
-    font-size: 26rpx;
-}
-
-.search-bar__cancel-btn{
-    margin-left: 20rpx;
-    line-height: 56rpx;
-    color: #09BB07;
-    white-space: nowrap;
+    font-size: 28rpx; 
+    margin-left: 30rpx;
 }
 
 .myTrait{
     width:50rpx;
     height:50rpx;
-    display: flex;
-    margin-top:31rpx;
+    margin:45rpx 30rpx 30rpx 0rpx;
 }
 
 /*列表框*/
@@ -101,15 +42,14 @@
 .list_groups .switch{
   display: flex;
   border-right:1rpx solid #E6E6EA; 
-  width: 242rpx;
+  flex: 1;
   flex-direction: row;
+  justify-content: center;
 }
 
 .list_groups .switch .icon{
-  width:27rpx;
-  height: 35rpx;
-  margin-left: 65rpx;
-  margin-top:27rpx;
+  margin-left: 10rpx;
+  margin-top:23rpx;
 }
 
 .list_groups .switch .title{
@@ -119,47 +59,77 @@
   margin-top:20rpx;
 }
 
-.list_groups .place{
-  border-right:1rpx solid #E6E6EA; 
-  width: 375rpx;
-  align-content: flex-start;
+.list_groups .place{ 
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .list_groups .place .title{
   color: #666666;
   font-size: 32rpx;
   margin-top:20rpx;
-  padding-left: 90rpx;
   float:left;
+  display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 }
 
 .list_groups .place .icon{
    height: 14rpx;
    width: 14rpx;
    float: left;
-   margin-left: 17rpx;
    margin-top:50rpx;
+   margin-left: 10rpx;
 }
 
 .list_groups .live{
   display: flex;
-  position: relative;
+  flex: 1;
+  justify-content: center;
+  
 }
 
 .list_groups .live .title{
   color: #666666;
   font-size: 32rpx;
   margin-top:20rpx;
-  padding-left: 25rpx;
+  float: left;
 }
 
 .list_groups .live .icon{
   height: 14rpx;
   width: 14rpx;
-  position: absolute;
-  top:50rpx;
-  left:100rpx;
+  float: left;
+  margin-top: 50rpx;
+  margin-left: 10rpx;
 }
+
+.list_groups .morelive{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.list_groups .morelive .title{
+  color: #666666;
+  font-size: 32rpx;
+  margin-top:20rpx;
+  float:left;
+  display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.list_groups .morelive .icon{
+   height: 14rpx;
+   width: 14rpx;
+   float: left;
+   margin-top:50rpx;
+   margin-left: 10rpx;
+}
+
+
 
 /*列表*/
 .list{
@@ -176,6 +146,7 @@
     width:100%;
     margin-top: 2rpx;
     position: relative;
+    height: 290rpx
 }
 
 .list .item .img{
@@ -226,3 +197,57 @@
   margin-top:46rpx;
   margin-right: 25rpx;
 }
+
+/*弹窗*/
+
+
+
+.arrived .header{
+  margin: 0rpx auto;
+  width: 95%;
+  height: 400rpx;
+  position: relative;
+}
+
+.arrived .header .img{
+  width: 100%;
+  height: 100%;
+}
+
+.arrived .header .icon1{
+  width: 60rpx;
+  height: 35rpx;
+  color: white;
+  background-color: red;
+  font-size: 24rpx;
+  position: absolute;
+  left: 20rpx;
+  top:20rpx;
+  text-align: center;
+}
+
+.arrived .header .icon2{
+  width: 61rpx;
+  height: 58rpx;
+  color: white;
+  position: absolute;
+  left: 10rpx;
+  top:10rpx;
+}
+
+.arrived .title{
+  font-size: 44rpx;
+  font-weight: bold;
+  text-align: center;
+  margin:40rpx auto;
+  color: black;
+}
+
+.arrived .content{
+  font-size: 26rpx;
+  line-height: 50rpx;
+  display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+}
+

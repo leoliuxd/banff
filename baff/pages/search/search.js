@@ -1,5 +1,8 @@
+
+
 Page({
   data:{
+    remind:'请输入您想要搜索的内容',
     search_inputShowed: false,
     search_inputVal: "",
     scrollHeight: 0,
@@ -25,12 +28,15 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
-          scrollHeight: res.windowHeight,
+          scrollHeight: res.windowHeight-91,
           liveShowMore: liveShowMore,
           wonderfulShowMore: wonderfulShowMore
         });
       }
     });
+    wx.setNavigationBarTitle({
+      title: '搜索'
+    })
   },
 
 
@@ -106,6 +112,7 @@ Page({
     var that=this
 
     function searchDataRender(info){
+      
       var live = info.places
       var wonderful = info.articles
       if (info.places.length > 0){
@@ -134,36 +141,42 @@ Page({
             wonderful[i].isShow = "none"
           }
           if (!parseInt(info.articles[i].is_theme)) {
-            wonderful[i].url = '../details/content/content?id=' + info.articles[i].id
+            wonderful[i].url = '../details/content/content?appid=banfu123&id=' + info.articles[i].id
           } else {
-            wonderful[i].url = '../details/list/list?id=' + info.articles[i].id + '&title=' + info.articles[i].title + '&img=' + info.articles[i].img
+            //传递给专题页面的内容
+            var extra = { 'title': wonderful[i].title, 'img': wonderful[i].img, 'intro': wonderful[i].intro }
+            wonderful[i].url = '../details/list/list?appid=banfu123&id=' + wonderful[i].id + '&extra=' + JSON.stringify(extra)
           }
         }  
       }
 
       that.setData({
         live:live,
-        wonderful:wonderful
+        wonderful:wonderful,
+        remind:''
       })
     }
 
     wx.request({
-      url: 'http://www.smallapp.cn/search/global?words='+words,
+      url: 'https://smallapp.dragontrail.cn/search/global?appid=banfu123&words='+words,
       success:function(res){
-        if(res.data){
+        if(res.data.articles.length > 0 || res.data.places.length > 0){
           var info=res.data
-          if(info.length != 0){
-            searchDataRender(info)
-          }else{
-            wx.showModal({
-              title: '提示',
-              content: '暂无该项，请搜索其他项！',
-              showCancel: false,
-            })
-          }
+          searchDataRender(info)  
+        }else{
+          wx.showModal({
+            title: '提示',
+            content: '暂无该项，请搜索其他项！',
+            showCancel: false,
+          })
+          that.setData({
+            remind: '抱歉，没有找到您搜索的内容'
+          })
         }
       }
     })
-  }
+  },
+
+   
 
 })

@@ -27,9 +27,7 @@
 }
 
 .header{
-    display: flex;
     border-bottom: 1rpx solid white;
-    cursor: pointer;
     position: relative;
 }
 
@@ -42,7 +40,14 @@
     color:white;
     position:absolute;
     left:25rpx;
-    top:180rpx;
+    bottom:30rpx;
     font-size: 42rpx;
     font-weight:bold;
+}
+
+.intro{
+  font-size: 28rpx;
+  line-height: 50rpx;
+  font-weight: bold;
+  margin: 60rpx;
 }

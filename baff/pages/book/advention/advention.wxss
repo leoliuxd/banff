@@ -69,13 +69,14 @@
   height:26rpx;
   width:37rpx;
   position: absolute;
+  top:37rpx;
   right:0rpx;
 }
 
 .title_groups .title{
   font-size: 34rpx;
   font-weight: bold;
-  color:rgb(104, 46, 107)
+  color:rgb(104, 46, 107);
 }
 
 .scenery{

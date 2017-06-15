@@ -1,4 +1,4 @@
-var util = require('../../../utils/util.js')
+var comm = require('../../../utils/common.js');
 var app = getApp()
 Page({
   data:{
@@ -22,15 +22,20 @@ Page({
         });
       }
     });
+    wx.setNavigationBarTitle({
+      title: option.name
+    })
   },
 
  
   getSport: function (id) {
     var that=this
-
+    console.log('id: '+id)
     function sportRender(info){
+      console.log('探险： ')
+      console.log(info)
       var swiper_img = info.live.gallery
-      var profile=info.intro
+      var profile=info.live.intro
       var details = info.places
 
       that.setData({
@@ -42,7 +47,7 @@ Page({
     }
 
     wx.request({
-      url: 'http://www.smallapp.cn/place/explore?id=6&category_id='+id,
+      url: 'https://smallapp.dragontrail.cn/place/explore?appid=banfu123&id='+id,
       success: function (res) {
         if (res.data) {
           var info = res.data;
@@ -58,4 +63,10 @@ Page({
       }
     })
   },
+
+  //图片加载错误处理
+  errImg: function (ev) {
+    var that = this;
+    comm.errImgFun(ev, that);
+  }, 
 })

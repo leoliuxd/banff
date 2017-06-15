@@ -21,6 +21,9 @@ Page({
         });
       }
     });
+    wx.setNavigationBarTitle({
+      title: title
+    })
   },
 
   getTips:function(id){
@@ -39,7 +42,7 @@ Page({
     //获取tip
     //获取列表头数据
     wx.request({
-      url: 'http://www.smallapp.cn/tip/tipsoftheme?tip_theme_id='+id,
+      url: 'https://smallapp.dragontrail.cn/tip/tipsoftheme?appid=banfu123&tip_theme_id='+id,
       success: function (res) {
         if (res.data) {
           var info = res.data;

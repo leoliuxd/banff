@@ -11,6 +11,9 @@ Page({
     onLoad:function(){
       var that=this
       this.getTips()
+      wx.setNavigationBarTitle({
+        title: "旅游贴士"
+      })
     },
 
     getTips: function () {
@@ -30,7 +33,7 @@ Page({
 
       //获取Tips数据
       wx.request({
-        url: 'http://www.smallapp.cn/tip/themes',
+        url: 'https://smallapp.dragontrail.cn/tip/themes?appid=banfu123',
         success: function (res) {
           if (res.data) {
             var info = res.data;
