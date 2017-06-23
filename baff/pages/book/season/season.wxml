@@ -2,10 +2,16 @@
  
     <view class="page__bd page__bd_spacing">
         <picker bindchange="seasonChange" value="{{seasonIndex}}" range="{{seasonName}}">
-        <view class="picker_groups">
-          <view class="picker">{{seasonName[seasonIndex]}}</view>
-          <image src="../../../image/triangle2.png" class="icon"></image>
-        </view>
+          <view class="picker_groups">
+            <view style="flex: 0 0 80rpx;"></view>
+            <view class="picker_content">
+               <view class="picker">{{seasonName[seasonIndex]}}</view>
+               
+            </view>
+            <view style="flex: 0 0 80rpx;">
+              <image src="../../../image/triangle2.png" class="icon"></image>
+            </view>
+          </view>
         </picker>
         
         
@@ -21,16 +27,19 @@
                     <view url="" class="item kind-list__item">
                         <view id="{{item.id}}" class="meta1 kind-list__item-hd {{item.open ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle" wx:if="{{ item.img.length > 0}}">
                             <image src="{{item.img}}" mode="aspectFill" class="img" binderror="errImg" data-err-img="selectedSeason[{{index}}].img"></image>
-                            <view class="title">{{item.name}}</view>
-                            <image src="../../../image/season_icon1.png" class="icon1"></image>
-                            <view class="time">{{item.month}}月</view>
-                            <image src="../../../image/season_icon2.png" class="icon2"></image>
+                            <view class="title_group">
+                              <view class="title">{{item.name}}</view>
+                              <image src="../../../image/season_icon1.png" class="icon1"></image>
+                              <view class="time">{{item.month}}月</view>
+                              <image src="../../../image/season_icon2.png" class="icon2"></image>
+                            </view>
+                            
                         </view>
 
                         <view id="{{item.id}}" class="meta2 kind-list__item-hd {{item.open ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle" wx:else>
                           <view class="title">{{item.name}}</view>
                           <image src="../../../image/season_icon1.png" class="icon1"></image>
-                          <view class="time">{{item.month}}</view>
+                          <view class="time">{{item.month}}月</view>
                           <image src="../../../image/season_icon2.png" class="icon2"></image>
                     </view>
    

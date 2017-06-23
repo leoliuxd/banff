@@ -36,7 +36,7 @@ Page({
 
     //获取标示页数据
     wx.request({
-      url: 'https://smallapp.dragontrail.cn/sign/signs?appid=banfu123&size=12',
+      url: app._server+'/sign/signs?appid='+app._appid+'&size=12',
       success: function (res) {
         if (res.data) {
           var info = res.data;
@@ -84,7 +84,7 @@ Page({
     }
 
     wx.request({
-      url: 'https://smallapp.dragontrail.cn/sign/signs?appid=banfu123&size=12&page='+page,
+      url: app._server+'/sign/signs?appid='+app._appid+'&size=12&page='+page,
       success: function (res) {
         if (res.data) {
           var info = res.data;

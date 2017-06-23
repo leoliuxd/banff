@@ -6,7 +6,10 @@
   <scroll-view scroll-y="true" bindscrolltolower="lower" style="height:{{scrollHeight}}px;" wx:else>
     <block wx:for="{{label}}" wx:key="*this">
       <navigator url="{{'label_content/label_content?id='+item.id+'&index='+index}}" class="label_item">
-        <view class="title">{{item.name}}</view>
+        <view class="title_group">
+          <view class="icon"></view>
+          <view class="title">{{item.name}}</view>
+        </view>
         <view class="text"><text>{{item.content}}</text></view>
       </navigator>
     </block>

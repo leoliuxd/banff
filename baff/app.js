@@ -6,8 +6,11 @@ App({
     //微信数据
     wx:{},
     //游客数据
-    we:{}
+    we:{},
   },
+  _server: 'https://smallapp.dragontrail.cn',
+  _appid: 'banfu123',
+
   onLaunch: function () {
     var that=this
     try{
@@ -67,7 +70,7 @@ App({
             wx.request({
               method:'POST',
               header: { 'content-type': 'application/x-www-form-urlencoded' },
-              url:'https://smallapp.dragontrail.cn/login/userkey?jscode='+res.code,
+              url:that._server+'/login/userkey?jscode='+res.code,
               data:{
                  code:res.code
                },

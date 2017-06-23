@@ -47,7 +47,7 @@ Page({
     }
 
     wx.request({
-      url: 'https://smallapp.dragontrail.cn/place/explore?appid=banfu123&id='+id,
+      url: app._server+'/place/explore?appid='+app._appid+'&id='+id,
       success: function (res) {
         if (res.data) {
           var info = res.data;

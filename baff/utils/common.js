@@ -12,3 +12,4 @@ function errImgFun(e,that){
 module.exports={
   errImgFun: errImgFun  
 }
+

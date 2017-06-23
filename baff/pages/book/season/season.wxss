@@ -3,6 +3,7 @@
 }
 
 .picker_groups{
+    display: flex;
     margin: 50rpx 60rpx;
     width:640rpx;
     height: 70rpx;
@@ -10,20 +11,21 @@
     border-radius: 60rpx;
 }
 
-.picker_groups .picker{
+.picker_groups .picker_content{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.picker_groups .picker_content .picker{
   font-size: 28rpx;
   color: #999999;
-  margin-top:18rpx;
-  margin-left: 48%;
-  float: left;
 }
 
 .picker_groups .icon{
   width: 23rpx;
   height: 16rpx;
-  float: right;
-  margin-right: 20rpx;
-  margin-top:30rpx;
 }
 
 /*内容*/
@@ -55,40 +57,59 @@
   height: 100%;
   width: 100%;
   position: absolute;
+  background-color: rgb(103, 46, 108);
 }
 
-.list .item .meta1 .title{
+.list .item .meta1 .title_group{
   position: absolute;
+  left: 0rpx;
+  bottom: 0rpx;
+  width: 100%;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#000000));
+  padding-top:10rpx;
+  padding-bottom: 10rpx;
+}
+
+
+.list .item .meta1 .title_group .title{
+  /*position: absolute;
   left: 30rpx;
-  top:252rpx;
+  top:252rpx;*/
+  margin-left: 30rpx;
+  margin-top:50rpx;
   font-size: 38rpx;
   color: white;
   font-weight: bold;
 }
 
-.list .item .meta1 .icon1{
-  position: absolute;
+.list .item .meta1 .title_group .icon1{
   height: 28rpx;
   width: 32rpx;
-  left:28rpx;
-  top:308rpx;
+  float: left;
+  margin-left: 28rpx;
+  margin-bottom: 10rpx;
 }
 
-.list .item .meta1 .icon2{
+.list .item .meta1 .title_group .icon2{
   position: absolute;
   right: 25rpx;
-  top:260rpx;
+  top:75rpx;
   height: 68rpx;
   width: 68rpx;
+  z-index: 1001;
 }
 
-.list .item .meta1 .time{
-  position: absolute;
-  left: 65rpx;
-  top:309rpx;
+.list .item .meta1 .title_group .time{
+  /*position: absolute;*/
+  /*left: 65rpx;
+  top:315rpx;*/
+  margin-left: 10rpx;
   font-size: 23rpx;
   color: white;
   font-weight: bold;
+  float: left;
+  line-height: 28rpx;
+  margin-bottom: 20rpx;
 }
 
 .list .item .meta2{
@@ -136,7 +157,7 @@
 .details{
   font-size: 28rpx;
   line-height: 50rpx;
-  padding: 40rpx 25rpx;
+  padding: 40rpx;
   color: #666666;
 }
 

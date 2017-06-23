@@ -18,7 +18,7 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
-          scrollHeight: res.screenHeight,
+          scrollHeight: res.windowHeight,
         });
       }
     });
@@ -46,7 +46,7 @@ Page({
     var loadsum = 0
     loadsum++
     wx.request({
-      url: 'https://smallapp.dragontrail.cn/article/theme?appid=banfu123&theme_id='+id,
+      url: app._server+'/article/theme?appid='+app._appid+'&theme_id='+id,
       success: function (res) {
         if (res.data) {
           var info = res.data;
@@ -68,7 +68,7 @@ Page({
 
     //获取专题信息
     wx.request({
-      url: 'https://smallapp.dragontrail.cn/article/detail?appid=banfu123&id=' + id,
+      url: app._server+'/article/detail?appid='+app._appid+'&id=' + id,
       success:function(res){
         if(res.data){
           var info=res.data
@@ -82,7 +82,7 @@ Page({
             if(list_content.length > 0){
               isContent=true
             }
-            WxParse.wxParse('list_content', 'html', list_content, that,30);
+            WxParse.wxParse('list_content', 'html', list_content, that,12.5);
             that.setData({
               list_title: list_title,
               list_img: list_img,

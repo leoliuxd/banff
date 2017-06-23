@@ -16,13 +16,15 @@
                     <view class="kind-list__item-bd {{scenery.open ? 'kind-list__item-bd_show' : ''}}">
                       <view class="weui-cells {{scenery.open ? 'weui-cells_show' : ''}} scenery">
                         <block wx:for="{{scenery.pages}}" wx:for-item="page" wx:key="*this">
-                          <navigator url="{{'../../live/food/merchants/merchants?id='+page.id}}" class="scenery_item">
-                            <image src="{{page.img}}" mode="aspectFill" class="scenery_img" binderror="errImg" data-err-img="scenery.pages[{{index}}].img" wx:if="{{page.img.length > 0}}"></image>
-                            <image src="../../../image/default.png" mode="aspectFill" class="scenery_img" wx:else></image>
-                            <view class="title">{{page.title}}</view>
-                            <image src="../../../image/arrow.png" class="icon"></image>
-                                        
-                          </navigator>
+                          <navigator url="{{'../../live/food/merchants/merchants?id='+page.id}}" class="scenery_item" style="{{'background-image:url('+page.img+');'}}">
+                            <view class="name_group">
+                              <view class="title">{{page.title}}</view>
+                              <image src="../../../image/arrow3.png" class="icon"></image>
+                            </view>                                      
+                         </navigator>
+
+                         
+
                         </block>  
                         </view>
                     </view>
@@ -39,10 +41,11 @@
                     <view class="kind-list__item-bd {{advention.open ? 'kind-list__item-bd_show' : ''}}">
                       <view class="weui-cells {{advention.open ? 'weui-cells_show' : ''}} advention">
                         <block wx:for="{{advention.pages}}" wx:for-item="page" wx:key="*this">
-                          <navigator class="advention_item" style="{{ index % 2 == 0 ? 'padding-right:7rpx;' : 'padding-left:7rpx;'}}" url="{{'../sport/sport?id='+page.id+'&name='+page.name}}">
+                          <navigator class="advention_item" style="{{ index % 2 == 0 ? 'margin-right:7rpx;' : 'margin-left:7rpx;'}}" url="{{'../sport/sport?id='+page.id+'&name='+page.name}}">
 
                             <image src="{{page.img}}" mode="aspectFill" class="img" binderror="errImg" data-err-img="advention.pages[{{index}}].img" wx:if="{{page.img.length > 0}}"></image>
                             <image src="../../../image/default.png" mode="aspectFill" class="img" wx:else></image>
+                            <view class="triangle"></view>
                             <view class="title">{{page.name}}</view>               
                           </navigator>
                         </block>  

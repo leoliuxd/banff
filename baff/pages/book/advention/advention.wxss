@@ -88,37 +88,45 @@
 
 .scenery_item{
     display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
     width: 100%;
     margin-bottom: 10rpx;
-    position: relative;
+    position: relative;   
+    cursor: pointer;
+    height: 230rpx;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(103, 46, 108);
 
 }
 
-.scenery_item .scenery_img{
-  display: block;
-  height:230rpx;
-  width:100%;
+
+
+.scenery_item .name_group{
+  position: absolute;
+  bottom: -1rpx;
+  width: 100%;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#000000));
+  padding-top:10rpx;
 }
 
-.scenery_item .title{
+.scenery_item .name_group .title{
     color:white;
-    position:absolute;
-    top:155rpx;
-    left:35rpx;
     font-size: 38rpx;
     font-weight:bold;
+    margin-left: 35rpx;
+    margin-bottom: 25rpx;
+    max-width: 72%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.scenery_item .icon{
-    width:25rpx;
-    height: 32rpx;
+.scenery_item .name_group .icon{
+   width:68rpx;
+    height: 68rpx;
     position: absolute;
-    top:155rpx;
-    right:25rpx;
+    right: 30rpx;
+    bottom: 25rpx;
 }
 
 /*探险布局*/
@@ -136,18 +144,34 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    width: 50%;
+    width: 49%;
+    z-index: 1;
+    border-bottom: 6rpx solid #ecebec;
+    margin-bottom: 20rpx;
+}
+
+.advention_item .triangle{
+  z-index: 2;
+  width: 0;
+  height: 0;
+  border-left: 25rpx solid transparent;
+  border-right: 25rpx solid transparent;
+  border-bottom: 25rpx solid white;
+  margin-top:-22rpx;
 }
 
 .advention_item .img{
   display: block;
   height:344rpx;
   width:100%;
+  z-index: 1;
+  background-color: rgb(103, 46, 108);
 }
 
 .advention_item .title{
   font-size: 34rpx;
   font-weight: bold;
   color:rgb(102, 102, 102);
-  margin: 34rpx 0rpx;
+  margin-top:20rpx;
+  margin-bottom: 20rpx;
 }

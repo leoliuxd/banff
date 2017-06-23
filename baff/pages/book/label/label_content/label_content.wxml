@@ -11,8 +11,8 @@
               <image src="{{item.img}}" mode="aspectFill" class="img" binderror="errImg" data-err-img="labels[{{index}}].img" wx:if="{{item.img.length > 0}}"></image>
               <image src="../../../../image/default.png" mode="aspectFill" class="img" wx:else></image>
               <view class="title">{{item.name}}</view>
-              <view class="divide"></view>
-              <view class="content"><text>{{item.content}}</text></view>
+              <view class="divide" style="{{'width:'+item.divide_width+'rpx;'}}"></view>
+              <view class="content">{{item.content}}</view>
               <view class="pageIndex">
                 <text>{{icon1}}</text>
                 <text style="color:black">{{item.index}}</text>
@@ -21,13 +21,13 @@
             </view>
             <view class="body" style="display:flex;flex-direction:column;justify-content: center;" wx:else >
               <view class="title">{{item.name}}</view>
-              <view class="divide"></view>
-              <view class="content"><text>{{item.content}}</text></view>
-              <view class="pageIndex">
+              <view class="divide" style="{{'width:'+item.divide_width+'rpx;'}}"></view>
+              <view class="content">{{item.content}}</view>
+            </view>
+             <view class="pageIndex">
                 <text>{{icon1}}</text>
                 <text style="color:black">{{item.index}}</text>
                 <text>{{icon2}}</text>
-              </view>
             </view>
           </scroll-view>
         </swiper-item>

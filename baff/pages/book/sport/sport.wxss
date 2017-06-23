@@ -12,6 +12,7 @@
 .list .swiper .img{
   width:100%;
   height: 100%;
+  background-color: rgb(103, 46, 108);
 }
 
 .meta{
@@ -31,14 +32,14 @@
 .meta .profile{
   font-size: 28rpx;
   line-height: 50rpx;
-  font-weight: bold;
-  margin: 5rpx 60rpx 65rpx;
+  margin: 5rpx 25rpx 65rpx;
 }
 
 .details{
     display: flex;
     flex: 1;
     flex-direction: column;
+    margin: 0rpx 25rpx 60rpx;
 }
 
 .details .logo_groups{
@@ -69,33 +70,41 @@
 
 .details .img_groups{
     display: flex;
-    flex: 1;
-    flex-direction: row;
-    justify-content: space-between;
     width:100%;
-    
+    height: 280rpx;
     margin-top: 2rpx;
     position: relative;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(103, 46, 108);
 }
 
-.details .img_groups .img{
-  height: 280rpx;
-  width: 100%;
-}
-
-.details .img_groups .title{
-  font-size: 38rpx;
-  font-weight: bold;
-  color: white;
+.details .img_groups .title_groups{
   position: absolute;
-  left:26rpx;
-  top:200rpx;
+  bottom: -1rpx;
+  width: 100%;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#000000));
+  padding-top:10rpx;
+}
+
+
+.details .img_groups .title_groups .title{
+   color:white;
+    font-size: 38rpx;
+    font-weight:bold;
+    margin-left: 35rpx;
+    margin-bottom: 25rpx;
+    max-width: 72%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .details .img_groups .arrow{
-  height: 68rpx;
-  width: 68rpx;
-  position: absolute;
-  top:183rpx;
-  right:25rpx;
+  width:68rpx;
+    height: 68rpx;
+    position: absolute;
+    right: 30rpx;
+    bottom: 25rpx;
 }

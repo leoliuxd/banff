@@ -12,19 +12,16 @@
       </block>
     </swiper>
     <view class="meta">
-      <view class="name">-- {{name}} --</view>
+      <view class="name">- {{name}} -</view>
       <view class="profile">{{profile}}</view>
     </view>
     <view class="details">
       <block wx:for="{{details}}" wx:key="*this">
-        <navigator url="{{'../../live/food/merchants/merchants?id='+item.id}}" class="img_groups" wx:if="{{item.img.length>0}}">
-          <image src="{{item.img}}" mode="aspectFill" class="img" binderror="errImg" data-err-img="details[{{index}}].img"></image>
-          <view class="title">{{item.title}}</view>
-          <image src="../../../image/arrow3.png" class="arrow"></image>
-        </navigator>
-        <navigator url="{{'../../live/food/merchants/merchants?id='+item.id}}" class="logo_groups" wx:else>
-          <view class="logo">{{item.title}}</view>
-          <image src="../../../image/arrow3.png" class="arrow"></image>
+        <navigator url="{{'../../live/food/merchants/merchants?id='+item.id}}" class="img_groups" style="{{'background-image:url('+item.img+');'}}">
+          <view class="title_groups">
+            <view class="title">{{item.title}}</view>
+            <image src="../../../image/arrow3.png" class="arrow"></image>
+          </view>       
         </navigator>
       </block>
       

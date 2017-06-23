@@ -35,11 +35,12 @@
        </view> 
       </view>
     </view>
+    <view class="divide"></view>
     <!--精彩-->
     <view class="wonderful" wx:if="{{wonderful.length > 0}}">
       <view class="title_group">
         <view class="icon"></view>
-        <view class="title">班夫生活</view>
+        <view class="title">精彩班夫</view>
       </view>
       <view class="body">
         <block wx:for="{{wonderful}}" wx:key="id">

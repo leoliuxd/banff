@@ -1,6 +1,6 @@
 
 <view class="swiper-tab" >
-    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav" style="border-right:1rpx solid rgb(238, 238, 238);">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav" style="border-right:1rpx solid rgb(230, 230, 230);">
       <image src="../../image/mytrait_icon1_on.png" class="img" bindtap="swichNav" data-current="0" wx:if="{{currentTab == 0}}"></image>
       <image src="../../image/mytrait_icon1.png" class="img" bindtap="swichNav" data-current="0" wx:else></image>
       <view class="title" bindtap="swichNav" data-current="0">我的行程</view>
@@ -19,8 +19,10 @@
           <navigator class="item">
             <image class="poster" src="{{item.img}}" mode="aspectFill" bindtap="skip" data-id="{{item.place_id}}" binderror="errImg" data-err-img="mytrait[{{index}}].img" wx:if="{{item.img.length > 0}}"></image>
             <image class="poster" src="../../image/default.png" mode="aspectFill" bindtap="skip" data-id="{{item.place_id}}" wx:else></image>
-            <view class="title">{{item.title}}</view>
-            <image src="../../image/arrow.png" class="icon"></image>
+            <view class="title_group">
+              <view class="title">{{item.title}}</view>
+              <image src="../../image/arrow.png" class="icon"></image>
+            </view>
             <image id="{{item.id}}" src="../../image/delete_icon.png" class="delete" bindtap="delete"></image>
           </navigator>
         </block>
@@ -36,8 +38,10 @@
           <navigator url="" class="item" data-id="{{item.place_id}}" bindtap="skip">
             <image class="poster" src="{{item.img}}" mode="aspectFill" binderror="errImg" data-err-img="reached[{{index}}].img" wx:if="{{item.img.length > 0}}"></image>
             <image class="poster" src="../../image/default.png" mode="aspectFill" wx:else></image>
-            <view class="title">{{item.title}}</view>
-            <image src="../../image/arrow.png" class="icon"></image>
+           <view class="title_group">
+              <view class="title">{{item.title}}</view>
+              <image src="../../image/arrow.png" class="icon"></image>
+            </view>
           </navigator>
         </block>
       </scroll-view>

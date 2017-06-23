@@ -1,5 +1,7 @@
 /**index.wxss**/
 
+
+
 /*轮播*/
 swiper-container{  
   position: relative;  
@@ -18,20 +20,23 @@ swiper-container{
 .swiper-container .swiper .swiper_item .img{  
   width: 100%;  
   height: 100%;
+  background-color: rgb(103, 46, 108);
 }
 
 
 .swiper-container .swiper .swiper_item .content_groups{
   position: absolute;
-  left: 47rpx;
-  bottom:45rpx;
+  bottom:-1rpx;
+  width:100%;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#000000));
+  padding-top: 10rpx;
 }
 
 .swiper-container .swiper .swiper_item .content_groups .index{
   font-size: 46rpx;
   font-weight: bold;
   color: white;
-  margin-left: 7rpx;
+  margin-left: 54rpx;
 }
 
 .swiper-container .swiper .swiper_item .content_groups .divide{
@@ -39,14 +44,16 @@ swiper-container{
   width: 46rpx;
   background-color: rgb(159, 35, 170);
   margin-bottom: 10rpx;
+  margin-left: 47rpx;
 }
 
 .swiper-container .swiper .swiper_item .content_groups .swiper_title{
   font-size: 36rpx;
   font-weight: bold;
   color: white;
-  margin-bottom: 10rpx;
+  margin-bottom: 65rpx;
   margin-right: 47rpx;
+  margin-left: 47rpx;
 }
 
 .swiper-container .search{
@@ -68,7 +75,7 @@ swiper-container{
 .swiper-container .dots{  
   position: absolute;  
   right: 50rpx;  
-  top: 463rpx;  
+  top: 445rpx;  
   display: flex;  
 }
 
@@ -97,6 +104,10 @@ swiper-container{
     align-content: flex-start;
     overflow: hidden;
     height: 500rpx;
+    background-color: rgb(103, 46, 108);
+    background-repeat: no-repeat;
+    background-size: 100% auto; 
+    background-image: url('https://smallapp.dragontrail.cn/assets/images/smallapp/live_background.png');
 }
 
 .bfLive .cell1of3{
@@ -146,13 +157,13 @@ swiper-container{
   height: 52rpx;
   width: 70rpx;
   position: absolute;
-  left:14rpx;
+  left:20rpx;
   top:59rpx;
 }
 
 .accommodation_icon{
   position: absolute;
-  left: 14rpx;
+  left: 20rpx;
   top:32rpx;
   width: 68rpx;
   height: 53rpx;
@@ -160,7 +171,7 @@ swiper-container{
 
 .shop_icon{
   position: absolute;
-  left: 13rpx;
+  left: 20rpx;
   top: 150rpx;
   width: 67rpx;
   height: 58rpx;
@@ -168,7 +179,7 @@ swiper-container{
 
 .entertainment_icon{
   position: absolute;
-  left: 16rpx;
+  left: 20rpx;
   top:40rpx;
   width: 55rpx;
   height: 66rpx;
@@ -176,7 +187,7 @@ swiper-container{
 
 .culture_icon{
   position: absolute;
-  left: 17rpx;
+  left: 20rpx;
   top:52rpx;
   width: 50rpx;
   height: 68rpx;
@@ -192,7 +203,7 @@ swiper-container{
 
 .fitness_icon{
   position: absolute;
-  left: 19rpx;
+  left: 20rpx;
   top:139rpx;
   height: 82rpx;
   width: 61rpx;
@@ -200,7 +211,7 @@ swiper-container{
 
 .all_icon{
   position: absolute;
-  left: 17rpx;
+  left: 20rpx;
   top: 34rpx;
   height: 63rpx;
   width:63rpx;
@@ -248,56 +259,73 @@ swiper-container{
 }
 
 /*精彩班夫*/
-.bfWonderful_title{
+/*.bfWonderful_title{
     font-size:38rpx;
     line-height: 45px;
     margin: 30rpx auto 35rpx;
     text-align:  center;
     color: rgb(103, 46, 108);
     font-weight:bold;
+    font-style: oblique;
+}*/
+
+.bfWonderful_title{
+  height: 41rpx;
+  width: 214rpx;
+  margin: 34rpx 200rpx;
+  
 }
 
-
 .bfWonderful {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
     background-repeat: no-repeat;
     background-size: 100% auto; 
     background-position: bottom center;
+    padding-bottom: 40rpx;
+    padding-left: 25rpx;
+    padding-right: 25rpx;
+    
     /*使用网络资源*/
     /*background-image: url('../../image/background.png');*/
 }
 
 .bfWonderful .item {
   display: flex;
-  border-bottom: 1rpx solid #eee;
   cursor: pointer;
   position: relative;
-  margin:0rpx 25rpx;
+  height: 290rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(103, 46, 108);
 }
 
-.bfWonderful .item .poster {
+
+
+.bfWonderful .item .title_group{
+  position: absolute;
+  bottom: -1rpx;
   width: 100%;
-  height: 230rpx;
-  
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#000000));
+  padding-top:10rpx;
 }
 
-.bfWonderful .item .title{
+.bfWonderful .item .title_group .title{
     color:white;
-    position:absolute;
-    bottom:15rpx;
-    left:35rpx;
     font-size: 38rpx;
     font-weight:bold;
+    margin-left: 35rpx;
+    margin-bottom: 15rpx;
+    max-width: 83%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.bfWonderful .item .icon{
+.bfWonderful .item .title_group .icon{
     width:25rpx;
     height: 32rpx;
     position: absolute;
-    bottom:30rpx;
-    right:25rpx;
+    right: 26rpx;
+    bottom: 29rpx;
 }
 
 .bfWonderful .item .theme_icon{

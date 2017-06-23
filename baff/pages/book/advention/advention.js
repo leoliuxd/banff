@@ -49,7 +49,7 @@ Page({
       var loadsum=0
       loadsum++
       wx.request({
-        url: 'https://smallapp.dragontrail.cn/place/allplaces?appid=banfu123&category_id=2',
+        url: app._server+'/place/allplaces?appid='+app._appid+'&category_id=2',
         success: function (res) {
           if (res.data) {
             var info = res.data;
@@ -88,7 +88,7 @@ Page({
       
       loadsum++
       wx.request({
-        url: 'https://smallapp.dragontrail.cn/live/twocategories?appid=banfu123&id=5',
+        url: app._server+'/live/twocategories?appid='+app._appid+'&id=5',
         success: function (res) {
           if (res.data) {
             var info = res.data;

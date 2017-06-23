@@ -38,20 +38,22 @@ Page({
     function labelRender(info) {
       var icon2
       var labels = info
+      
       icon2='/'+info.length+'  >'
       for(var i in info){
         labels[i].index=parseInt(i)+1
+        labels[i].divide_width = labels[i].name.length * 22 + 20
       }
       that.setData({
         labels: labels,
-        icon2:icon2
+        icon2:icon2,
       })
       console.log(that.data.labels)
     }
 
     //获取标示内容页数据
     wx.request({
-      url: 'https://smallapp.dragontrail.cn/sign/signs?appid=banfu123&size=100',
+      url: app._server+'/sign/signs?appid='+app._appid+'&size=100',
       success: function (res) {
         if (res.data) {
           var info = res.data;

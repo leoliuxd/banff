@@ -73,7 +73,7 @@ Page({
   skip:function(e){
     var id=parseInt(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: '../live/food/merchants/merchants?appid=banfu123&id='+id,
+      url: '../live/food/merchants/merchants?appid='+app._appid+'&id='+id,
     })
   },
 
@@ -97,7 +97,7 @@ Page({
 
           //通知后台删除
           wx.request({
-            url: 'https://smallapp.dragontrail.cn/schedule/mark',
+            url: app._server+'/schedule/mark',
             method: 'POST',
             data: {
               ukey: app.cache.userdata,
@@ -149,7 +149,7 @@ Page({
     var loadsum=0
     loadsum++
     wx.request({
-      url: 'https://smallapp.dragontrail.cn/schedule/arrivedlist', 
+      url: app._server+'/schedule/arrivedlist', 
       data: {
         ukey: app.cache.userdata,
         appid: 'banfu123',
@@ -182,7 +182,7 @@ Page({
 
     loadsum++
     wx.request({
-      url: 'https://smallapp.dragontrail.cn/schedule/list',
+      url: app._server+'/schedule/list',
       method: 'POST',
       data: {
         ukey:app.cache.userdata,

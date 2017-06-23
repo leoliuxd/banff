@@ -8,6 +8,7 @@ Page({
     img:'',
     title:'',
     author:'',
+    place_ids:[],
   },
 
   onLoad: function (option) {
@@ -31,14 +32,17 @@ Page({
   getContent:function(id){
     var that=this
     function contentRender(info){
+      console.log(info)
       var content =unescape(info.content)
-      console.log(content)
-      WxParse.wxParse('content', 'html', content, that, 12.5);
+      //console.log(content)
+      WxParse.wxParse('content', 'html', content, that, 25);
+
       that.setData({
         img:info.img,
         title:info.title,
         author: info.author + ' ' + info.created_time,
         id:info.place_id,
+        place_ids: info.place_ids
       })
       wx.setNavigationBarTitle({
         title: info.title
@@ -46,7 +50,7 @@ Page({
     }
     //获取文章数据
     wx.request({
-      url: 'https://smallapp.dragontrail.cn/article/detail?appid=banfu123&id='+id,
+      url: app._server+'/article/detail?appid='+app._appid+'&id='+id,
       success: function (res) {
         if (res.data) {
           var info = res.data;
@@ -54,6 +58,9 @@ Page({
             contentRender(info)
           }
         }
+      },
+      fail:function(res){
+        console.log(res)
       },
       complete:function(){
         that.setData({

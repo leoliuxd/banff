@@ -42,7 +42,7 @@ Page({
     //获取tip
     //获取列表头数据
     wx.request({
-      url: 'https://smallapp.dragontrail.cn/tip/tipsoftheme?appid=banfu123&tip_theme_id='+id,
+      url: app._server+'/tip/tipsoftheme?appid='+app._appid+'&tip_theme_id='+id,
       success: function (res) {
         if (res.data) {
           var info = res.data;

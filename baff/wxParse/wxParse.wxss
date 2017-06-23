@@ -11,8 +11,8 @@
  */
 
 .wxParse{
-    margin: 0 5px;
-    font-family: Helvetica,sans-serif;
+    margin: 0px 5px;
+    /*font-family: Helvetica,sans-serif;*/
     font-size: 28rpx;
     color: #666;
     line-height: 1.8;

@@ -1,38 +1,37 @@
 var WxParse = require('../../wxParse/wxParse.js');
 Page({
   data:{
-
+    markers: [{
+      iconPath: "../../image/mapIcon2.png",
+      id: 0,
+      latitude: 51.1755048000,
+      longitude: -115.5714872000,
+      width: 20,
+      height: 20
+    }],
   },
 
   onLoad:function(){
-    // var article = '<div>我是HTML代码</div>';
-    // var that = this;
-    // WxParse.wxParse('article', 'html', article, that, 5);
-    this.getTest()
-  },
-
-  //Test页面
-  getTest:function(){
     var that=this
-    //渲染Test 页面
-    function testRender(info){
-      var content=info.content
-      WxParse.wxParse('content','html',content,that,5)
-    }
-    //获取test页面数据
     wx.request({
-      url: 'https://smallapp.dragontrail.cn/place/detail?place_id=1',
+      url: app._server+'/article/detail?appid='+app._appid+'&id=8',
       success: function (res) {
+        console.log(res)
         if (res.data) {
           var info = res.data;
           if (info.length != 0) {
-            
-            testRender(info)
-          }else{
-            console.log('暂无数据!')
+            contentRender(info)
           }
         }
+      },
+      fail: function (res) {
+        console.log(res)
+      },
+      complete: function () {
+        that.setData({
+          remind: ''
+        })
       }
     })
-  }
+  },
 })

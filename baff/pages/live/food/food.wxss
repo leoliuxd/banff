@@ -6,9 +6,9 @@
 
 .search_groups{
   display: flex;
-  border: 2rpx solid #999999;
+  background-color: #f0f0f0;
   margin: 30rpx;
-  flex: 1rpx;
+  flex: 1;
   border-radius: 60rpx;
 }
 
@@ -24,10 +24,10 @@
     margin-left: 30rpx;
 }
 
-.myTrait{
-    width:50rpx;
-    height:50rpx;
-    margin:45rpx 30rpx 30rpx 0rpx;
+.switch{
+    width:41rpx;
+    height:48rpx;
+    margin:40rpx 30rpx 30rpx 0rpx;
 }
 
 /*列表框*/
@@ -35,34 +35,16 @@
   display: flex;
   flex-direction: row;
   border-top: 1rpx solid #E6E6EA;
-  width:100%;
-  height: 88rpx;  
-}
-
-.list_groups .switch{
-  display: flex;
-  border-right:1rpx solid #E6E6EA; 
-  flex: 1;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.list_groups .switch .icon{
-  margin-left: 10rpx;
-  margin-top:23rpx;
-}
-
-.list_groups .switch .title{
-  color: #672e6c;
-  font-size: 32rpx;
-  margin-left: 14rpx;
-  margin-top:20rpx;
+  height: 88rpx;
+  padding-left: 65rpx;
+  padding-right: 65rpx;
 }
 
 .list_groups .place{ 
-  flex: 1;
   display: flex;
   justify-content: center;
+  flex-direction: row;
+  flex: 1;
 }
 
 .list_groups .place .title{
@@ -70,23 +52,26 @@
   font-size: 32rpx;
   margin-top:20rpx;
   float:left;
-  display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+  max-width: 165rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .list_groups .place .icon{
    height: 14rpx;
    width: 14rpx;
-   float: left;
-   margin-top:50rpx;
-   margin-left: 10rpx;
+    margin-left: 14rpx;
+    margin-top: 55rpx;
+    float: left;
 }
 
 .list_groups .live{
-  display: flex;
   flex: 1;
+  display: flex;
   justify-content: center;
+  flex-direction: row;
+  margin: 0rpx 15rpx;
   
 }
 
@@ -94,21 +79,22 @@
   color: #666666;
   font-size: 32rpx;
   margin-top:20rpx;
-  float: left;
+  float:left;
 }
 
 .list_groups .live .icon{
-  height: 14rpx;
-  width: 14rpx;
-  float: left;
-  margin-top: 50rpx;
-  margin-left: 10rpx;
+   height: 14rpx;
+   width: 14rpx;
+   margin-left: 14rpx;
+   margin-top: 55rpx;
+    float: left;
 }
 
 .list_groups .morelive{
   display: flex;
-  flex: 1;
   justify-content: center;
+  flex-direction: row;
+  flex: 1;
 }
 
 .list_groups .morelive .title{
@@ -116,17 +102,18 @@
   font-size: 32rpx;
   margin-top:20rpx;
   float:left;
-  display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+  max-width: 165rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .list_groups .morelive .icon{
    height: 14rpx;
    width: 14rpx;
-   float: left;
-   margin-top:50rpx;
-   margin-left: 10rpx;
+   margin-left: 14rpx;
+   margin-top: 55rpx;
+    float: left;
 }
 
 
@@ -139,36 +126,43 @@
 }
 
 .list .item{
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    justify-content: space-between;
-    width:100%;
-    margin-top: 2rpx;
-    position: relative;
-    height: 290rpx
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  height: 230rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(103, 46, 108);
 }
 
-.list .item .img{
-  height: 100%;
+
+
+.list .item .title_group{
+  position: absolute;
+  bottom: -1rpx;
   width: 100%;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#000000));
+  padding-top:10rpx;
 }
 
-.list .item .title{
-  font-size: 38rpx;
-  font-weight: bold;
-  color: white;
-  position: absolute;
-  left:26rpx;
-  top:200rpx;
+.list .item .title_group .title{
+    color:white;
+    font-size: 38rpx;
+    font-weight:bold;
+    margin-left: 35rpx;
+    margin-bottom: 25rpx;
+    max-width: 72%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.list .item .arrow{
-  height: 68rpx;
-  width: 68rpx;
-  position: absolute;
-  top:183rpx;
-  right:25rpx;
+.list .item .title_group .arrow{
+    width:68rpx;
+    height: 68rpx;
+    position: absolute;
+    right: 30rpx;
+    bottom: 25rpx;
 }
 
 .list .logo_groups{
@@ -212,6 +206,7 @@
 .arrived .header .img{
   width: 100%;
   height: 100%;
+  background-color: rgb(103, 46, 108);
 }
 
 .arrived .header .icon1{
@@ -239,7 +234,7 @@
   font-size: 44rpx;
   font-weight: bold;
   text-align: center;
-  margin:40rpx auto;
+  margin:40rpx auto 25rpx;
   color: black;
 }
 
@@ -249,5 +244,10 @@
   display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;
+}
+
+#map{
+  width: 100%; 
+  height:82vh;
 }
 

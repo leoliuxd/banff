@@ -1,30 +1,40 @@
 .list{
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+  margin-bottom: 60rpx;
 }
 
-.list .item{
-    display: flex;
-    border-bottom: 1rpx solid white;
-    cursor: pointer;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-}
-
-.list .item .poster{
-  width:100%;
+.detail_list{
+  position: relative;
   height: 280rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: rgb(103, 46, 108);
+  margin: 0rpx 50rpx;
 }
 
-.list .item .title{
-    color:white;
-    position:absolute;
-    
-    font-size: 42rpx;
-    font-weight:bold;
+.detail_list .mask{
+  width: 100%;
+  height: 280rpx;
+  position: absolute;
+  left: 0rpx;
+  top:0rpx;
+  background-color: black;
+  opacity: 0.3;
+  z-index: 1;
 }
+
+.detail_list .title{
+  color:white;
+  font-size: 42rpx;
+  font-weight:bold;
+  position: absolute;
+  left: 0rpx;
+  top:0rpx;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  line-height: 280rpx;
+}
+
 
 .header{
     border-bottom: 1rpx solid white;
@@ -34,6 +44,7 @@
 .header .img{
   width:100%;
   height: 280rpx;
+  background-color: rgb(103, 46, 108);
 }
 
 .header .title{
@@ -46,8 +57,13 @@
 }
 
 .intro{
-  font-size: 28rpx;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+  font-size: 32rpx;
   line-height: 50rpx;
-  font-weight: bold;
-  margin: 60rpx;
+  margin-bottom: 60rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }

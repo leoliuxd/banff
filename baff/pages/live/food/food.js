@@ -27,7 +27,6 @@ Page({
         _live:[],
         liveIndex:0,
 
-        isAll:false,
         morelive:[],
         _morelive:['面包熟食店','咖啡馆和茶室'],
         moreliveIndex:0,
@@ -39,6 +38,7 @@ Page({
         place_id:0,
         isCollect:0,
 
+       
     },
 
     onLoad:function(option){
@@ -48,8 +48,8 @@ Page({
         var isShowList
         if (option.regoin_id && option.category_two_id){
           this.setData({
-            longitude: parseInt(option.longitude),
-            latitude: parseInt(option.latitude),
+            longitude: parseFloat(option.longitude),
+            latitude: parseFloat(option.latitude),
             place_id:parseInt(option.place_id),
             isCollect: parseInt(option.isCollect),
           })
@@ -64,7 +64,7 @@ Page({
             that.setData({
               scrollHeight: res.windowHeight,
               switchMode: '地图',
-              isShowList: isShowList
+              isShowList: isShowList,
             });
           }
         });
@@ -194,7 +194,7 @@ Page({
         })
       }
       wx.request({
-        url: 'https://smallapp.dragontrail.cn/place/detail?appid=banfu123&place_id=' + id + '&ukey=' + app.cache.userdata,
+        url: app._server+'/place/detail?appid'+app._appid+'&place_id=' + id + '&ukey=' + app.cache.userdata,
         success: function (res) {
           if (res.data) {
             var info = res.data;
@@ -231,7 +231,7 @@ Page({
         success:function(res){
           if(res.confirm){
             wx.request({
-              url: 'https://smallapp.dragontrail.cn/schedule/mark',
+              url: app._server+'/schedule/mark',
               method: 'POST',
               data: {
                 ukey: app.cache.userdata,
@@ -317,11 +317,6 @@ Page({
         longitude: 0,
         remind: '加载中',  
       })
-      if (parseInt(e.detail.value) != 7){
-        this.setData({
-          isAll:false,
-        })
-      }
       this.getMorelive(region_id, live_id)
     },
 
@@ -383,7 +378,7 @@ Page({
 
       //获取区域和分类数据
       wx.request({
-        url: 'https://smallapp.dragontrail.cn/place/regions?appid=banfu123',
+        url: app._server+'/place/regions?appid='+app._appid+'',
         success: function (res) {
           if (res.data) {
             var info = res.data;
@@ -418,41 +413,61 @@ Page({
             }
           }
         }
+        //全部
+        var all={}
+        all.id=-2
+        all.index = parseInt(morelive.length)
+        all.name='全部'
+        _morelive.push(all.name)
+        morelive.push(all)
+
+        if(info.length == 0){
+          moreliveIndex=-2
+        }
+
         that.setData({
           _morelive:_morelive,
           morelive:morelive,
           moreliveIndex: moreliveIndex
         })
-        console.log(that.data._morelive)
+
+        console.log('二级目录： ')
+        console.log(that.data.morelive)
       }
 
       if(parseInt(id) == -2){
         id=''
         twocategories_id=''
+        var morelive={'id':-2,'index':0,'name':'全部'}
+        var _morelive=['全部']
+        var moreliveIndex=0
         that.setData({
-          isAll:true
+          morelive:morelive,
+          _morelive:_morelive,
+          moreliveIndex:moreliveIndex
+        })
+        that.getLiveContent(regoin_id, id, twocategories_id, parseInt(that.data.page))
+      }else{
+        wx.request({
+          url: app._server+'/live/twocategories?appid='+app._appid+'&id=' + id,
+          success: function (res) {
+            var info = res.data;
+            moreliveRender(info)
+            if (twocategories_id == -1) {
+              twocategories_id = that.getMoreliveId(that.data.moreliveIndex)
+              that.getLiveContent(regoin_id, id, twocategories_id, parseInt(that.data.page))
+            } else {
+              that.getLiveContent(regoin_id, id, twocategories_id, parseInt(that.data.page))
+            }
+          },
+          complete: function () {
+            that.setData({
+              remind: ''
+            })
+          }
         })
       }
-      wx.request({
-        url: 'https://smallapp.dragontrail.cn/live/twocategories?appid=banfu123&id='+id,
-        success:function(res){
-          var info = res.data;
-          if (info) {
-            moreliveRender(info)
-            if (twocategories_id == -1){
-              twocategories_id = that.getMoreliveId(that.data.moreliveIndex)
-              that.getLiveContent(regoin_id, id, twocategories_id,parseInt(that.data.page))
-            }else{
-              that.getLiveContent(regoin_id, id, twocategories_id,parseInt(that.data.page))
-            }
-          }
-        },
-        complete:function(){
-          that.setData({
-            remind:''
-          })
-        }
-      })
+      
     },
 
 
@@ -465,8 +480,16 @@ Page({
       if (parseInt(category_id) == -2){
         category_id=''
       }
+      if (parseInt(twocategories_id) == -1){
+        twocategories_id=''
+      }
+      if (parseInt(twocategories_id) == -2){
+        twocategories_id = ''
+      }
       //渲染列表数据
       function contentRender(info) {
+        console.log('列表内容： ')
+        console.log(info)
         var list = app.cache['selectedPlace']
         that.setData({
           list: list,
@@ -474,11 +497,11 @@ Page({
         console.log(that.data.list)
       }
       //获取列表数据
-      //console.log('区域id: ' + id)
-      //console.log('分类id: ' + category_id)
-      //console.log('二级目录id: ' + twocategories_id)
+      console.log('区域id: ' + id)
+      console.log('分类id: ' + category_id)
+      console.log('二级目录id: ' + twocategories_id)
       wx.request({
-        url: 'https://smallapp.dragontrail.cn/place/places?appid=banfu123&region_id=' + id + '&category_id=' + category_id + '&category_two_id=' + twocategories_id+ '&page='+page+'&size=10'+'&words='+words,
+        url: app._server+'/place/places?appid='+app._appid+'&region_id=' + id + '&category_id=' + category_id + '&category_two_id=' + twocategories_id+ '&page='+page+'&size=10'+'&words='+words,
         success: function (res) {
           if (res.data) {
             var info = res.data;
@@ -509,10 +532,8 @@ Page({
 
     //列表内容动态加载
     lower: function (e) {
-       wx.showNavigationBarLoading();
        var that = this;
-       setTimeout(function () { wx.hideNavigationBarLoading(); that.nextLoad(); }, 1000);
-       console.log("lower")
+       setTimeout(function () {that.nextLoad(); }, 1000);
      },
 
      nextLoad: function () {
@@ -527,7 +548,8 @@ Page({
        
        var region_id=that.getRegionId(that.data.placeIndex)
        var live_id=that.getLiveId(that.data.liveIndex)
-       this.getLiveContentNext(region_id, live_id, parseInt(this.data.page))
+       var twocategories_id = that.getMoreliveId(that.data.moreliveIndex)
+       this.getLiveContentNext(region_id, live_id, twocategories_id,parseInt(this.data.page))
        
        
      },
@@ -537,7 +559,12 @@ Page({
        //渲染列表数据
        if (parseInt(category_id) == -2) {
          category_id = ''
+         twocategories_id=''
        }
+       if (parseInt(twocategories_id) == -2){
+         twocategories_id = ''
+       }
+       
        function contentRender(info) {
          var list = that.data.list.concat(info)
          app.saveCache('selectedPlace',list)
@@ -548,7 +575,7 @@ Page({
 
        //获取列表数据
        wx.request({
-         url: 'https://smallapp.dragontrail.cn/place/places?appid=banfu123&region_id=' + id + '&category_id=' + category_id + '&category_two_id=' + twocategories_id +'&page=' + page + '&size=10' + '&words=' + words,
+         url: app._server+'/place/places?appid='+app._appid+'&region_id=' + id + '&category_id=' + category_id + '&category_two_id=' + twocategories_id +'&page=' + page + '&size=10' + '&words=' + words,
          success: function (res) {
            if (res.data) {
              var info = res.data;
@@ -568,9 +595,9 @@ Page({
      //获取地图标记点信息
      getMapInfo: function (region_id, category_id, twocategories_id){
       var that=this
-      console.log('区域id: ' + region_id)
-      console.log('分类id: ' + category_id)
-      console.log('二级目录id: ' + twocategories_id)
+      //console.log('区域id: ' + region_id)
+      //console.log('分类id: ' + category_id)
+      //console.log('二级目录id: ' + twocategories_id)
 
       var longitude = that.data.longitude
       var latitude = that.data.latitude
@@ -578,16 +605,18 @@ Page({
         var markers=[]
         for(var i=0;i<place.length;i++){
           var marker = { 'id': 0, 'iconPath': '', 'latitude': 0,'longitude':0}
-          marker['id']=place[i].id
-          marker['iconPath'] ='../../../image/mapIcon1.png'
-          marker['latitude'] = place[i].latitude
-          marker['longitude'] = place[i].longitude
-          marker['width']=19
-          marker['height']=26
-          markers.push(marker)
+          if ((place[i].latitude.length != 0 || place[i].longitude.length != 0) && (parseFloat(place[i].latitude) != 0 || parseFloat(place[i].longitude) != 0)){
+            marker['id'] = place[i].id
+            marker['iconPath'] = '../../../image/mapIcon1.png'
+            marker['latitude'] = place[i].latitude
+            marker['longitude'] = place[i].longitude
+            marker['width'] = 19
+            marker['height'] = 26
+            markers.push(marker)
+          }     
         }
         wx.request({
-          url: 'https://smallapp.dragontrail.cn/schedule/list',
+          url: app._server+'/schedule/list',
           method: 'POST',
           header: { 'content-type': 'application/x-www-form-urlencoded' },
           data: {
@@ -601,14 +630,27 @@ Page({
                 
                 for(var i in info){
                   console.log('i: '+i)
-                  for(var j in markers){
-                    if(parseInt(info[i].place_id) == parseInt(markers[j].id)){
-                      console.log("j: "+j)
-                      markers[j]['iconPath'] ='../../../image/mapIcon2.png'
-                      break
+                  if(markers.length != 0){
+                    for (var j in markers) {
+                      if (parseInt(info[i].place_id) == parseInt(markers[j].id)) {
+                        console.log("j: " + j)
+                        markers[j]['iconPath'] = '../../../image/mapIcon2.png'
+                        break
+                      }
                     }
-                  }
-                  if (parseInt(info[i].place_id) != parseInt(markers[j].id)){
+                    if (parseInt(info[i].place_id) != parseInt(markers[j].id)) {
+                      var marker = { 'id': 0, 'iconPath': '', 'latitude': 0, 'longitude': 0 }
+                      if ((info[i].latitude.length != 0 || info[i].longitude.length != 0) && (parseFloat(info[i].latitude) != 0 || parseFloat(info[i].longitude) != 0)) {
+                        marker['id'] = info[i].place_id
+                        marker['iconPath'] = '../../../image/mapIcon2.png'
+                        marker['latitude'] = info[i].latitude
+                        marker['longitude'] = info[i].longitude
+                        marker['width'] = 19
+                        marker['height'] = 26
+                        markers.push(marker)
+                      }
+                    }
+                  }else{
                     var marker = { 'id': 0, 'iconPath': '', 'latitude': 0, 'longitude': 0 }
                     marker['id'] = info[i].place_id
                     marker['iconPath'] = '../../../image/mapIcon2.png'
@@ -617,7 +659,9 @@ Page({
                     marker['width'] = 19
                     marker['height'] = 26
                     markers.push(marker)
-                  }
+
+                  } 
+                  
                  
                 }
               }
@@ -627,20 +671,15 @@ Page({
                 longitude: markers[0].longitude
               })
 
-              console.log('markers: ')
-              console.log(that.data.markers)
-              console.log(that.data.markers.length)
-              console.log('latitude: ' + that.data.latitude + ' longitude: ' + that.data.longitude)
+              //console.log('markers: ')
+              //console.log(that.data.markers)
+              //console.log('latitude: ' + that.data.latitude + ' longitude: ' + that.data.longitude)
             }else{
               that.setData({
                 markers: markers,
                 latitude: markers[0].latitude,
                 longitude: markers[0].longitude
               })
-
-              console.log('markers: ')
-              console.log(that.data.markers)
-              console.log('latitude: ' + that.data.latitude + ' longitude: ' + that.data.longitude)
             }
           },
           fail:function(res){
@@ -653,10 +692,10 @@ Page({
       }
 
 
-      console.log('latitude: ' + that.data.latitude + ' longitude: ' + that.data.longitude)
+      //console.log('latitude: ' + that.data.latitude + ' longitude: ' + that.data.longitude)
       if (parseInt(longitude) == 0 && parseInt(latitude)==0){
         wx.request({
-          url: 'https://smallapp.dragontrail.cn/place/places?appid=banfu123&region_id=' + region_id + '&category_id=' + category_id + '&category_two_id=' + twocategories_id,
+          url: app._server+'/place/places?appid='+app._appid+'&region_id=' + region_id + '&category_id=' + category_id + '&category_two_id=' + twocategories_id,
           success: function (res) {
             if (res.data) {
               var info = res.data;
@@ -720,7 +759,11 @@ Page({
      //获取更多生活id
      getMoreliveId:function(index){
        var morelive=this.data.morelive
-       var morelive_id=1
+       var morelive_id
+       if(index == -2){
+         morelive_id=-2
+         return morelive_id
+       }
        if(morelive){
          for(var i in morelive){
            if(index == morelive[i].index){

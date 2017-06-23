@@ -26,6 +26,7 @@ Page({
     category_two_id:0,
     longitude: 0,
     latitude: 0,
+    isTomap:true,
   },
 
   onLoad:function(options){
@@ -48,7 +49,7 @@ Page({
   onShareAppMessage: function () {
     var that=this
     var id = this.data.article_id
-    var path ='page/live/food/merchants/merchants?appid=banfu123&id='+id
+    var path ='page/live/food/merchants/merchants?appid='+app._appid+'&id='+id
     return {
       title: that.data.title,
       path: path
@@ -94,7 +95,7 @@ Page({
             //通知后台填加
             wx.request({
               method: 'POST',
-              url: 'https://smallapp.dragontrail.cn/schedule/add',
+              url: app._server+'/schedule/add',
               data: {
                 ukey: app.cache.userdata,
                 appid: 'banfu123',
@@ -148,7 +149,7 @@ Page({
         if(res.confirm){
           //通知后台删除
           wx.request({
-            url: 'https://smallapp.dragontrail.cn/schedule/mark',
+            url: app._server+'/schedule/mark',
             method: 'POST',
             data: {
               ukey: app.cache.userdata,
@@ -214,6 +215,10 @@ Page({
         info.content=''
       }
       
+      if (info.longitude.length == 0 || info.latitude.length == 0 || parseFloat(info.longitude == 0) || parseFloat(info.latitude) == 0){
+        that.data.isTomap=false
+      }
+
       that.setData({
         id:info.id,
         schedule_id: info.schedule_id,
@@ -234,6 +239,7 @@ Page({
         category_two_id: info.category_two_id,
         longitude: info.longitude,
         latitude: info.latitude,
+        isTomap: that.data.isTomap
       })
 
       wx.setNavigationBarTitle({
@@ -242,7 +248,7 @@ Page({
     }
 
     wx.request({
-      url: 'https://smallapp.dragontrail.cn/place/detail?appid=banfu123&place_id='+id+'&ukey='+app.cache.userdata,
+      url: app._server+'/place/detail?appid='+app._appid+'&place_id='+id+'&ukey='+app.cache.userdata,
       success: function (res) {
         if (res.data) {
           var info = res.data;

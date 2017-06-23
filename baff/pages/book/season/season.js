@@ -4,7 +4,7 @@ Page({
     data:{
         remind:'加载中',
         scrollHeight:0,
-        seasonName:['春季','夏季','秋季','冬季'],
+        seasonName: ['班夫春季', '班夫夏季', '班夫秋季','班夫冬季'],
         seasonIndex:0,
         selectedSeason:[],
         season:[],
@@ -74,7 +74,7 @@ Page({
       }
 
       wx.request({
-        url: 'https://smallapp.dragontrail.cn/festival/festivals?appid=banfu123&festival_category_id='+id,
+        url: app._server+'/festival/festivals?appid='+app._appid+'&festival_category_id='+id,
         success: function (res) {
           if (res.data) {
             var info = res.data;
